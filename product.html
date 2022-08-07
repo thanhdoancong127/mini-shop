@@ -42,8 +42,8 @@
         <tbody>
             <tr class="js-rowInput">
                 <td class="js-id"></td>
-                <td><input type="text" value="" class="form-control" name="name"></td>
-                <td><input type="number" value="0" class="form-control" name="price"/></td>
+                <td><input type="text" value="" class="form-control js-name" name="name"></td>
+                <td><input type="number" value="0" class="form-control js-price" name="price"/></td>
                 <td><button type="button" class="js-btnDelete btn btn-warning">Xóa</button></td>
             </tr>
             <tr class="js-rowEmpty">
@@ -54,9 +54,18 @@
 
     <script>
         $(document).ready(function() {
-            var fruit = {};
+            var fruit = [];
 
             fruit = window.localStorage.getItem("fruit") || fruit;
+
+            fruit.forEach(function(elm) {
+                $(".js-displayTbl tbody").empty();
+                var elm = $(".js-hiddenTbl .js-rowInput").clone();
+                elm.appendTo($(".js-displayTbl tbody"));
+                elm.find(".js-id").text($(".js-displayTbl tbody tr").length);
+                elm.find(".js-name").text(elm.name);
+                elm.find(".js-price").text(elm.price);
+            });
 
             console.log(fruit);
 
