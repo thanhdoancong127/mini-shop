@@ -67,9 +67,18 @@
             </tbody>
         </table>
     </div>
-    <script type="application/json" src="https://thanhdoancong127.github.io/assets/data.json"></script>
     <script type="text/javascript">
         $(".js-search").select2();
+
+        var jqxhr = $.getJSON( "./assets/data.json", function() {
+            console.log( "success" );
+        }).done(function() {
+            console.log( "second success" );
+        }).fail(function() {
+            console.log( "error" );
+        }).always(function() {
+            console.log( "complete" );
+        });
 
         fruit.map(function(val, index) {
             $(".js-search").append("<option value='"+ val.id +"'>"+ val.name +"</option>");
