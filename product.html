@@ -59,7 +59,6 @@
             fruit = JSON.parse(window.localStorage.getItem("fruit")) || fruit;
 
             fruit.forEach(function(obj) {
-                $(".js-displayTbl tbody").empty();
                 let elm = $(".js-hiddenTbl .js-rowInput").clone();
                 elm.appendTo($(".js-displayTbl tbody"));
                 elm.find(".js-id").text($(".js-displayTbl tbody tr").length);
