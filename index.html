@@ -90,7 +90,7 @@
             });
         }
 
-        if(window.localStorage.getItem("fruit")) {
+        if(!window.localStorage.getItem("fruit")) {
             getData();
         } else {
             fruit = JSON.parse(window.localStorage.getItem("fruit"));
@@ -112,11 +112,11 @@
                     $(".js-datatable .js-itemrow-empty").remove();
                     const element = $(".js-table-hidden .js-itemRow").clone();
                     element.appendTo($(".js-datatable"));
-                    updateHTML(element, object);
+                    createHTML(element, object);
                 } else {
                     const element = $(".js-table-hidden .js-itemRow tr").clone();
                     element.appendTo($(".js-datatable .js-itemRow"));
-                    updateHTML(element, object);
+                    createHTML(element, object);
                 }
 
                 $(e.currentTarget).val("");
@@ -134,7 +134,7 @@
                 $(".js-total").text(numberWithCommas(total) + " VND");
             }
 
-            function updateHTML($htmlElement, object) {
+            function createHTML($htmlElement, object) {
                 $htmlElement = $htmlElement.hasClass("js-itemRow") ? $htmlElement.find("tr") : $htmlElement;
                 $htmlElement.find(".js-name").text(object[0].name);
                 $htmlElement.find(".js-name").data("id", object[0].id);
