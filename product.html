@@ -88,7 +88,7 @@
             $(".js-save").on("click", function(e) {
                 fruit = [];
                 $(".js-displayTbl tbody tr").each(function(index, value) {
-                    fruit[Number($(value).find(".js-id").text())] = {
+                    fruit[Number($(value).find(".js-id").text())-1] = {
                         "id": Number($(value).find(".js-id").text()),
                         "name": $(value).find(".js-name").val(),
                         "price": $(value).find(".js-price").val()
