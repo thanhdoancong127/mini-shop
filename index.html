@@ -94,6 +94,9 @@
             getData();
         } else {
             fruit = JSON.parse(window.localStorage.getItem("fruit"));
+            fruit.map(function(val, index) {
+                $(".js-search").append("<option value='"+ val.id +"'>"+ val.name +"</option>");
+            });
         }
         
         if($(".js-datatable").find("tbody").length == 0) {
