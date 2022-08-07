@@ -56,7 +56,7 @@
         $(document).ready(function() {
             var fruit = [];
 
-            fruit = window.localStorage.getItem("fruit") || fruit;
+            fruit = JSON.parse(window.localStorage.getItem("fruit")) || fruit;
 
             fruit.forEach(function(elm) {
                 $(".js-displayTbl tbody").empty();
