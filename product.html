@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chỉnh giá</title>
+    <script src="./assets/jquery.min.js"></script>
+    <script src="./assets/bootstrap.min.js"></script>
+    <link href="./assets/bootstrap.min.css" rel="stylesheet"/>
+    <link href="./assets/select2.min.css" rel="stylesheet"/>
+    <script src="./assets/select2.min.js"></script>
+</head>
+<body>
+    <div class="container" style="padding-top: 20px;">
+        <div class="row">
+            <div class="col-md-12" style="text-align: right;">
+                <button type="button" class="js-import btn btn-primary">Nhập</button>
+                <button type="button" class="js-export btn btn-warning">Xuất</button>
+            </div>
+        </div>
+        <table class="table js-displayTbl">
+            <thead>
+                <tr>
+                    <td>Mã</td>
+                    <td>Tên</td>
+                    <td>Giá Bán</td>
+                    <td></td>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+        <div class="row">
+            <div class="col-md-12" style="text-align: right;">
+                <button type="button" class="js-save btn btn-success">Lưu</button>
+                <button type="button" class="js-addNew btn btn-primary">Thêm</button>
+            </div>
+        </div>
+    </div>
+    <table class="js-hiddenTbl" style="display: none;">
+        <tbody>
+            <tr class="js-rowInput">
+                <td class="js-id"></td>
+                <td><input type="text" value="" class="form-control" name="name"></td>
+                <td><input type="number" value="0" class="form-control" name="price"/></td>
+                <td><button type="button" class="js-btnDelete btn btn-warning">Xóa</button></td>
+            </tr>
+            <tr class="js-rowEmpty">
+                <td colspan="4" style="text-align: center;">Không có sản phẩm nào</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script>
+        $(document).ready(function() {
+            var fruit = {};
+
+            fruit = window.localStorage.getItem("fruit") || fruit;
+
+            console.log(fruit);
+
+            if($(".js-displayTbl tbody tr").length == 0) {
+                $(".js-hiddenTbl .js-rowEmpty").clone().appendTo($(".js-displayTbl tbody"));
+            }
+
+            $(".js-btnDelete").on("click", function(e) {
+                $(e.currentTarget).parents("tr").remove();
+                if($(".js-displayTbl tbody").length == 0) {
+                    $(".js-hiddenTbl .js-rowEmpty").clone().appendTo($(".js-displayTbl tbody"));
+                }
+            })
+
+            $(".js-addNew").on("click", function(e) {
+                $(".js-displayTbl tbody .js-rowEmpty").remove();
+                var elm = $(".js-hiddenTbl .js-rowInput").clone();
+                elm.appendTo($(".js-displayTbl tbody"));
+                elm.find(".js-id").text($(".js-displayTbl tbody tr").length);
+            });
+        });
+    </script>
+</body>
+</html>
