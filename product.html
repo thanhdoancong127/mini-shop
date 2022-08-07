@@ -60,11 +60,11 @@
 
             fruit.forEach(function(obj) {
                 $(".js-displayTbl tbody").empty();
-                var elm = $(".js-hiddenTbl .js-rowInput").clone();
+                let elm = $(".js-hiddenTbl .js-rowInput").clone();
                 elm.appendTo($(".js-displayTbl tbody"));
                 elm.find(".js-id").text($(".js-displayTbl tbody tr").length);
-                elm.find(".js-name").text(obj.name);
-                elm.find(".js-price").text(obj.price);
+                elm.find(".js-name").val(obj.name);
+                elm.find(".js-price").val(obj.price);
             });
 
 
