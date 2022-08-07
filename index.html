@@ -69,9 +69,12 @@
     </div>
     <script type="text/javascript">
         $(".js-search").select2();
-
-        var jqxhr = $.getJSON( "./assets/data.json", function() {
-            console.log( "success" );
+        var fruit = undefined;
+        var jqxhr = $.getJSON( "./assets/data.json", function(data) {
+            fruit = data.fruit;
+            fruit.map(function(val, index) {
+                $(".js-search").append("<option value='"+ val.id +"'>"+ val.name +"</option>");
+            });
         }).done(function() {
             console.log( "second success" );
         }).fail(function() {
@@ -80,9 +83,6 @@
             console.log( "complete" );
         });
 
-        fruit.map(function(val, index) {
-            $(".js-search").append("<option value='"+ val.id +"'>"+ val.name +"</option>");
-        });
 
         if($(".js-datatable").find("tbody").length == 0) {
             $(".js-itemrow-empty").clone().appendTo($(".js-datatable"));
