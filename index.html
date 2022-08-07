@@ -154,7 +154,7 @@
 
     <script>
         $(".js-addFruit").on("click", function() {
-            window.localStorage.setItem("fruit", fruit);
+            window.localStorage.setItem("fruit", JSON.stringify(fruit));
             window.open("./product.html", "_blank")
         });
     </script>
