@@ -84,6 +84,18 @@
                 elm.appendTo($(".js-displayTbl tbody"));
                 elm.find(".js-id").text($(".js-displayTbl tbody tr").length);
             });
+
+            $(".js-save").on("click", function(e) {
+                fruit = [];
+                $(".js-displayTbl tbody tr").each(function(index, value) {
+                    fruit[Number($(value).find(".js-id").text())] = {
+                        "id": Number($(value).find(".js-id").text()),
+                        "name": $(value).find(".js-name").val(),
+                        "price": $(value).find(".js-price").val()
+                    }
+                });
+                window.localStorage.setItem("fruit", JSON.stringify(fruit));
+            });
         });
     </script>
 </body>
