@@ -74,20 +74,28 @@
     <script type="text/javascript">
         $(".js-search").select2();
         var fruit = undefined;
-        var jqxhr = $.getJSON( "./assets/data.json", function(data) {
+
+        function getData() {
+            var jqxhr = $.getJSON( "./assets/data.json", function(data) {
             fruit = data.fruit;
             fruit.map(function(val, index) {
                 $(".js-search").append("<option value='"+ val.id +"'>"+ val.name +"</option>");
             });
-        }).done(function() {
-            console.log( "second success" );
-        }).fail(function() {
-            console.log( "error" );
-        }).always(function() {
-            console.log( "complete" );
-        });
+            }).done(function() {
+                console.log( "second success" );
+            }).fail(function() {
+                console.log( "error" );
+            }).always(function() {
+                console.log( "complete" );
+            });
+        }
 
-
+        if(window.localStorage.getItem("fruit")) {
+            getData();
+        } else {
+            fruit = JSON.parse(window.localStorage.getItem("fruit"));
+        }
+        
         if($(".js-datatable").find("tbody").length == 0) {
             $(".js-itemrow-empty").clone().appendTo($(".js-datatable"));
         }
@@ -127,8 +135,9 @@
             }
 
             function updateHTML($htmlElement, object) {
-                $htmlElement.find(".js-name").text(object[0].name);
                 $htmlElement = $htmlElement.hasClass("js-itemRow") ? $htmlElement.find("tr") : $htmlElement;
+                $htmlElement.find(".js-name").text(object[0].name);
+                $htmlElement.find(".js-name").data("id", object[0].id);
                 $htmlElement.find(".js-amount").on("change", "input", function(e) {
                     $htmlElement.find(".js-unit").text($(e.currentTarget).val() * object[0].price);
                     tinhtien();
