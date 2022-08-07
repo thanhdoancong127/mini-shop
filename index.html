@@ -24,7 +24,7 @@
             <div class="row" style="padding-top: 20px;">
                 <div class="col-md-12" style="display: flex; justify-content: space-between;">
                     <b style="font-size: 25px;">Trung Linh</b>
-                    <button type="button" class="btn btn-primary">In</button>
+                    <button type="button" class="btn btn-primary js-in">In</button>
                 </div>
             </div>
             <table class="table js-datatable">
@@ -142,6 +142,10 @@
                     }
                 });
             }
+
+            $(".js-in").on("click", function() {
+                alert("Chưa mua máy in nên chưa làm?")
+            })
         });
     </script>
 </body>
