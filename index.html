@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./assets/jquery.min.js"></script>
+    <script src="./assets/bootstrap.min.js"></script>
+    <link href="./assets/bootstrap.min.css" rel="stylesheet"/>
+    <link href="./assets/select2.min.css" rel="stylesheet"/>
+    <script src="./assets/select2.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="container-fluid" style="padding-top: 20px;">
+            <div class="row">
+                <div class="col-md-3">
+                    <select class="js-search form-control">
+                        <option value="">Chưa nhập gì</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row" style="padding-top: 20px;">
+                <div class="col-md-2">
+                    <h2>Trái cây:</h2>
+                </div>
+            </div>
+            <table class="table js-datatable">
+                <thead>
+                    <tr>
+                        <th>Trái cây</th>
+                        <th>Số ký Mua</th>
+                        <th>Giá bán</th>
+                        <th>Thành Tiền</th>
+                        <th></th>
+                    </tr>
+                </thead>
+            </table>
+            <div class="col-md-12" style="text-align: right;">
+                <b style="font-size: 20px;">Tổng tiền:</b>
+                <b class="js-total">0 VND</b>
+            </div>
+        </div>
+    </div>
+    <div style="display: none;">
+        <table class="js-table-hidden">
+            <tbody class="js-itemRow">
+                <tr>
+                    <td class="js-name">cam</td>
+                    <td class="js-amount">
+                        <input class="form-control" name="" value="0" type="number"/>
+                    </td>
+                    <td><span class="js-price">15,000</span><span> VND/Kg</span></td>
+                    <td><span class="js-unit">0 </span><span> VND</span></td>
+                    <td>
+                        <button class="button js-delbtn" type="button">Xóa</button>
+                    </td>
+                </tr>
+            </tbody>
+            <tbody class="js-itemrow-empty">
+                <tr>
+                    <td colspan="6" style="text-align: center;">
+                        Chưa có trái cây được nhập
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script type="application/json" src="./assets/data.json"></script>
+    <script type="text/javascript">
+        $(".js-search").select2();
+
+        fruit.map(function(val, index) {
+            $(".js-search").append("<option value='"+ val.id +"'>"+ val.name +"</option>");
+        });
+
+        if($(".js-datatable").find("tbody").length == 0) {
+            $(".js-itemrow-empty").clone().appendTo($(".js-datatable"));
+        }
+
+        $(document).ready(function() {
+            $(".js-search").on("change", function(e) {
+                var object = fruit.filter(function(obj) {
+                    return obj.id == $(e.currentTarget).val();
+                });
+
+                if($(e.currentTarget).val() == "" || object.length == 0) return false;
+
+                if($(".js-datatable").find(".js-itemRow").length == 0) {
+                    $(".js-datatable .js-itemrow-empty").remove();
+                    const element = $(".js-table-hidden .js-itemRow").clone();
+                    element.appendTo($(".js-datatable"));
+                    updateHTML(element, object);
+                } else {
+                    const element = $(".js-table-hidden .js-itemRow tr").clone();
+                    element.appendTo($(".js-datatable .js-itemRow"));
+                    updateHTML(element, object);
+                }
+
+                $(e.currentTarget).val("");
+            });
+
+            function numberWithCommas(x) {
+                return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            }
+
+            function tinhtien() {
+                var total = 0;
+                $(".js-unit").each(function(index, val) {
+                    total += Number($(val).text());
+                })
+                $(".js-total").text(numberWithCommas(total) + " VND");
+            }
+
+            function updateHTML($htmlElement, object) {
+                $htmlElement.find(".js-name").text(object[0].name);
+                $htmlElement = $htmlElement.hasClass("js-itemRow") ? $htmlElement.find("tr") : $htmlElement;
+                $htmlElement.find(".js-amount").on("change", "input", function(e) {
+                    $htmlElement.find(".js-unit").text($(e.currentTarget).val() * object[0].price);
+                    tinhtien();
+                });
+                $htmlElement.find(".js-price").text(object[0].price);
+                $htmlElement.find(".js-delbtn").on("click", function(e) {
+                    if(confirm("Muốn xóa dòng này!") == true)
+                        $(e.currentTarget).parents("tr").remove();
+                        tinhtien();
+
+                    if($(".js-datatable").find("tbody.js-itemRow tr").length == 0) {
+                        $(".js-datatable").find("tbody").remove();
+                        $(".js-itemrow-empty").clone().appendTo($(".js-datatable"));
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
