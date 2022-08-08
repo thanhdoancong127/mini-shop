@@ -176,8 +176,8 @@
                     "id": index,
                     "name": $(element).find(".js-name").text(),
                     "amount": $(element).find(".js-amount input").val(),
-                    "price": $(element).find(".js-price").text(),
-                    "unit": $(element).find(".js-unit").text()
+                    "price": numberWithCommas($(element).find(".js-price").text()),
+                    "unit": numberWithCommas($(element).find(".js-unit").text())
                 }
             })
 
