@@ -16,7 +16,7 @@
         <div class="row">
             <div class="col-md-12" style="text-align: right;">
                 <button type="button" class="js-import btn btn-primary">Nhập</button>
-                <button type="button" class="js-export btn btn-warning">Xuất</button>
+                <a download="fruitdata.json" data-flag="0" class="js-export btn btn-warning">Xuất</a>
             </div>
         </div>
         <table class="table js-displayTbl">
@@ -101,13 +101,14 @@
                 window.localStorage.setItem("fruit", JSON.stringify(fruit));
             });
 
-            $(".js-export").on("click", function() {
+            $(".js-export").on("click", function(event) {
                 var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(fruit));
-                if($("#downloadAnchorElem").length == 0) {
-                    $("body").append("<a id='downloadAnchorElem' style='' download='fruitData.json'>.</a>")
-                }
-                $("#downloadAnchorElem").attr("href", dataStr);
-                $("#downloadAnchorElem").click();
+                $(".js-export").attr("href", dataStr);
+                // if($("#downloadAnchorElem").length == 0) {
+                //     $("body").append("<a id='downloadAnchorElem' style='' download='fruitData.json'>.</a>")
+                // }
+                // $("#downloadAnchorElem").attr("href", dataStr);
+                // $("#downloadAnchorElem").click();
             });
 
             $(".js-import").on("click", function() {
