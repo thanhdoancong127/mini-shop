@@ -16,7 +16,7 @@
         <div class="row">
             <div class="col-md-12" style="text-align: right;">
                 <button type="button" class="js-import btn btn-primary">Nhập</button>
-                <button type="button" class="js-export btn btn-warning">Xuất</button>
+                <a href="" download="fruitData.json" class="js-export btn btn-warning">Xuất</a>
             </div>
         </div>
         <table class="table js-displayTbl">
@@ -103,9 +103,6 @@
                 $("body").append("<a id='downloadAnchorElem' style='visibility:hidden' download='fruitData.json'>download</a>")
                 $("#downloadAnchorElem").attr("href", dataStr);
                 $("#downloadAnchorElem").click();
-                setTimeout(function() {
-                    $("#downloadAnchorElem").remove();
-                }, 1000)
             })
         });
     </script>
