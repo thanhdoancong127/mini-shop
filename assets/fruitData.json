@@ -39,6 +39,9 @@
         </div>
     </div>
     <table class="js-hiddenTbl" style="display: none;">
+        <div>
+            <input type="file" name="" style="visibility: hidden;" id="js-importFile">
+        </div>
         <tbody>
             <tr class="js-rowInput">
                 <td class="js-id"></td>
@@ -105,7 +108,22 @@
                 }
                 $("#downloadAnchorElem").attr("href", dataStr);
                 $("#downloadAnchorElem").click();
-            })
+            });
+
+            $(".js-import").on("click", function() {
+                $("#js-importFile").click();
+            });
+
+            $("#js-importFile").on("change", function(event) {
+                var reader = new FileReader();
+                reader.onload = onReaderLoad;
+                reader.readAsText(event.target.files[0]);
+            });
+
+            function onReaderLoad(event) {
+                var obj = JSON.parse(event.target.result);
+                console.log(obj);
+            }
         });
     </script>
 </body>
