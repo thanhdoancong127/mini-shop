@@ -100,9 +100,8 @@
 
             $(".js-export").on("click", function() {
                 var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(fruit));
-                var dlAnchorElem = document.getElementById('downloadAnchorElem');
+                $(body).append("<a id='downloadAnchorElem' style='visable:hidden' download='fruitData.json'></a>")
                 dlAnchorElem.setAttribute("href",     dataStr     );
-                dlAnchorElem.setAttribute("download", "fruitData.json");
                 dlAnchorElem.click();
                 setTimeout(function() {
                     $(dlAnchorElem).remove();
