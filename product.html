@@ -55,8 +55,11 @@
     <script>
         $(document).ready(function() {
             var fruit = [];
+            var jsonLocalStorage = window.localStorage.getItem("fruit"); 
 
-            fruit = JSON.parse(window.localStorage.getItem("fruit")) || fruit;
+            if(!(jsonLocalStorage == "undefined" || !jsonLocalStorage)) {
+                fruit = JSON.parse(jsonLocalStorage);
+            }
 
             fruit.forEach(function(obj) {
                 let elm = $(".js-hiddenTbl .js-rowInput").clone();
@@ -65,7 +68,6 @@
                 elm.find(".js-name").val(obj.name);
                 elm.find(".js-price").val(obj.price);
             });
-
 
             if($(".js-displayTbl tbody tr").length == 0) {
                 $(".js-hiddenTbl .js-rowEmpty").clone().appendTo($(".js-displayTbl tbody"));
