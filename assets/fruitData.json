@@ -105,7 +105,6 @@
                 }
                 $("#downloadAnchorElem").attr("href", dataStr);
                 $("#downloadAnchorElem").click();
-                $("#downloadAnchorElem").remove();
             })
         });
     </script>
