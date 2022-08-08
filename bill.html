@@ -88,6 +88,8 @@
                 elm.find(".js-amount").text(obj.amount);
                 elm.find(".js-unit").text(obj.unit);
             });
+
+            window.localStorage.removeItem("billObject");
         }
     </script>
 </body>
