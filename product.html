@@ -100,7 +100,9 @@
 
             $(".js-export").on("click", function() {
                 var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(fruit));
-                $("body").append("<a id='downloadAnchorElem' style='visibility:hidden' download='fruitData.json'>download</a>")
+                if($("#downloadAnchorElem").length == 0) {
+                    $("body").append("<a id='downloadAnchorElem' style='visibility:hidden' download='fruitData.json'>download</a>")
+                }
                 $("#downloadAnchorElem").attr("href", dataStr);
                 $("#downloadAnchorElem").click();
             })
