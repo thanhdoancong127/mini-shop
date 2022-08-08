@@ -125,8 +125,8 @@
                 try {
                     var obj = JSON.parse(event.target.result);
 
-                    if(typeof obj == "object" && obj.fruit.length > 0) {
-                        fruit = obj.fruit;
+                    if(typeof obj == "object") {
+                        fruit = obj.fruit ? obj.fruit: obj;
                         $(".js-displayTbl tbody").empty();
 
                         fruit.forEach(function(obj) {
