@@ -157,10 +157,6 @@
                     }
                 });
             }
-
-            $(".js-in").on("click", function() {
-                alert("Chưa mua máy in nên chưa làm?")
-            })
         });
     </script>
 
@@ -170,8 +166,22 @@
             window.open("./product.html", "_blank")
         });
         $(".js-in").on("click", function() {
-            let bill = [];
-            window.localStorage.setItem("bill", JSON.stringify(bill));
+            let billObject = {
+                total: $(".js-total").text(),
+                bill: []
+            };
+
+            $(".js-datatable .js-itemRow tr").each(function(index, element) {
+                billObject.bill[index] = {
+                    "id": index,
+                    "name": $(element).find(".js-name").text(),
+                    "amount": $(element).find(".js-amount").val(),
+                    "price": $(element).find(".js-price").text(),
+                    "unit": $(element).find(".js-unit").text()
+                }
+            })
+
+            window.localStorage.setItem("billObject", JSON.stringify(billObject));
             window.open("./bill.html", "_blank");
         });
     </script>

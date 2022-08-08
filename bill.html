@@ -40,10 +40,9 @@
         <b>SDT: 0935750038</b>
     </header>
     <main>
-        <table class="table" style="font-size: 12px;">
+        <table class="table js-displayTbl" style="font-size: 12px;">
             <tbody>
-                <tr style="font-weight: bold;">
-                    <td>STT</td>
+                <tr class="" style="font-weight: bold;">
                     <td style="">
                         <span>Tên</span><br>
                         <span>Số Lượng</span>
@@ -52,125 +51,8 @@
                     <td>Tiền</td>
                 </tr>
                 <tr>
-                    <td>1</td>
-                    <td style="">
-                        <span>Cam sành</span><br>
-                        <span>1.5</span>
-                    </td>
-                    <td>35,000</td>
-                    <td>52,500</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td style="">
-                        <span>Cam Mỹ</span><br>
-                        <span>1.5</span>
-                    </td>
-                    <td>35,000</td>
-                    <td>52,500</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td style="">
-                        <span>Cam Mỹ</span><br>
-                        <span>1.5</span>
-                    </td>
-                    <td>35,000</td>
-                    <td>52,500</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td style="">
-                        <span>Cam Mỹ</span><br>
-                        <span>1.5</span>
-                    </td>
-                    <td>35,000</td>
-                    <td>52,500</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td style="">
-                        <span>Cam Mỹ</span><br>
-                        <span>1.5</span>
-                    </td>
-                    <td>35,000</td>
-                    <td>52,500</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td style="">
-                        <span>Cam Mỹ</span><br>
-                        <span>1.5</span>
-                    </td>
-                    <td>35,000</td>
-                    <td>52,500</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td style="">
-                        <span>Cam Mỹ</span><br>
-                        <span>1.5</span>
-                    </td>
-                    <td>35,000</td>
-                    <td>52,500</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td style="">
-                        <span>Cam Mỹ</span><br>
-                        <span>1.5</span>
-                    </td>
-                    <td>35,000</td>
-                    <td>52,500</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td style="">
-                        <span>Cam Mỹ</span><br>
-                        <span>1.5</span>
-                    </td>
-                    <td>35,000</td>
-                    <td>52,500</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td style="">
-                        <span>Cam Mỹ</span><br>
-                        <span>1.5</span>
-                    </td>
-                    <td>35,000</td>
-                    <td>52,500</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td style="">
-                        <span>Cam Mỹ</span><br>
-                        <span>1.5</span>
-                    </td>
-                    <td>35,000</td>
-                    <td>52,500</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td style="">
-                        <span>Cam Mỹ</span><br>
-                        <span>1.5</span>
-                    </td>
-                    <td>35,000</td>
-                    <td>52,500</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td style="">
-                        <span>Cam Mỹ</span><br>
-                        <span>1.5</span>
-                    </td>
-                    <td>35,000</td>
-                    <td>52,500</td>
-                </tr>
-                <tr>
-                    <td colspan="4" style="text-align: right;">
-                        <b>Tổng tiền: <span>52,500</span></b>
+                    <td colspan="3" style="text-align: right;">
+                        <b>Tổng tiền: <span class="js-total"></span></b>
                     </td>
                 </tr>
             </tbody>
@@ -180,5 +62,33 @@
         <h4 style="text-align: center; ">Cám ơn và hẹn gặp lại quý khách</h4>
         <p style="text-align: right; padding-right: 25px;">Ngày bán: <span>08/08/2022</span></p>
     </footer>
+    <table style="display: none;" class="js-hidden">
+        <tr class="js-rowData">
+            <td>
+                <span class="js-name"></span><br>
+                <span class="js-amount"></span>
+            </td>
+            <td class="js-price"></td>
+            <td class="js-unit"></td>
+        </tr>
+    </div>
+
+    <script>
+        var billObject = [];
+        var jsonLocalStorage = window.localStorage.getItem("billObject"); 
+        if(!(jsonLocalStorage == "undefined" || !jsonLocalStorage)) {
+            billObject = JSON.parse(jsonLocalStorage);
+
+            $(".js-total").text(billObject.total);
+            billObject.bill.forEach(function(obj) {
+                let elm = $(".js-hidden .js-rowData").clone();
+                elm.insertAfter($(".js-displayTbl tbody tr").last());
+                elm.find(".js-name").text(obj.name);
+                elm.find(".js-price").val(obj.price);
+                elm.find(".js-amount").val(obj.amount);
+                elm.find(".js-unit").val(obj.unit);
+            });
+        }
+    </script>
 </body>
 </html>

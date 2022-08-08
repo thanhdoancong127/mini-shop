@@ -59,15 +59,14 @@
 
             if(!(jsonLocalStorage == "undefined" || !jsonLocalStorage)) {
                 fruit = JSON.parse(jsonLocalStorage);
+                fruit.forEach(function(obj) {
+                    let elm = $(".js-hiddenTbl .js-rowInput").clone();
+                    elm.appendTo($(".js-displayTbl tbody"));
+                    elm.find(".js-id").text($(".js-displayTbl tbody tr").length);
+                    elm.find(".js-name").val(obj.name);
+                    elm.find(".js-price").val(obj.price);
+                });
             }
-
-            fruit.forEach(function(obj) {
-                let elm = $(".js-hiddenTbl .js-rowInput").clone();
-                elm.appendTo($(".js-displayTbl tbody"));
-                elm.find(".js-id").text($(".js-displayTbl tbody tr").length);
-                elm.find(".js-name").val(obj.name);
-                elm.find(".js-price").val(obj.price);
-            });
 
             if($(".js-displayTbl tbody tr").length == 0) {
                 $(".js-hiddenTbl .js-rowEmpty").clone().appendTo($(".js-displayTbl tbody"));
