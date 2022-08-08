@@ -39,6 +39,9 @@
         </div>
     </div>
     <table class="js-hiddenTbl" style="display: none;">
+        <div>
+            <input type="file" name="" style="visibility: hidden;" id="js-importFile">
+        </div>
         <tbody>
             <tr class="js-rowInput">
                 <td class="js-id"></td>
@@ -105,7 +108,16 @@
                 }
                 $("#downloadAnchorElem").attr("href", dataStr);
                 $("#downloadAnchorElem").click();
-            })
+            });
+
+            $(".js-import").on("click", function() {
+                $("#js-importFile").click();
+            });
+
+            $("#js-importFile").on("load", function(event) {
+                const fileList = event.target.files;
+                console.log(fileList);
+            });
         });
     </script>
 </body>
