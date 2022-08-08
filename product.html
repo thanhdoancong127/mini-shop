@@ -101,10 +101,10 @@
             $(".js-export").on("click", function() {
                 var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(fruit));
                 $("body").append("<a id='downloadAnchorElem' style='visable:hidden' download='fruitData.json'></a>")
-                dlAnchorElem.setAttribute("href",     dataStr     );
-                dlAnchorElem.click();
+                $("#dlAnchorElem").attr("href", dataStr);
+                $("#dlAnchorElem").click();
                 setTimeout(function() {
-                    $(dlAnchorElem).remove();
+                    $("#dlAnchorElem").remove();
                 }, 1000)
             })
         });
