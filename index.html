@@ -102,6 +102,10 @@
         if($(".js-datatable").find("tbody").length == 0) {
             $(".js-itemrow-empty").clone().appendTo($(".js-datatable"));
         }
+        
+        function numberWithCommas(x) {
+            return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
 
         $(document).ready(function() {
             $(".js-search").on("change", function(e) {
@@ -124,10 +128,6 @@
 
                 $(e.currentTarget).val("");
             });
-
-            function numberWithCommas(x) {
-                return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-            }
 
             function tinhtien() {
                 var total = 0;
