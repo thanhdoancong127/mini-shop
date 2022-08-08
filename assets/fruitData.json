@@ -104,7 +104,7 @@
             $(".js-export").on("click", function() {
                 var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(fruit));
                 if($("#downloadAnchorElem").length == 0) {
-                    $("body").append("<a id='downloadAnchorElem' style='text-decoration: none;' download='fruitData.json'>'</a>")
+                    $("body").append("<a id='downloadAnchorElem' style='' download='fruitData.json'>'</a>")
                 }
                 $("#downloadAnchorElem").attr("href", dataStr);
                 $("#downloadAnchorElem").click();
@@ -121,8 +121,26 @@
             });
 
             function onReaderLoad(event) {
-                var obj = JSON.parse(event.target.result);
-                console.log(obj);
+                try {
+                    var obj = JSON.parse(event.target.result);
+
+                    if(typeof obj == "object" && obj.length > 0) {
+                        fruit = obj;
+                        $(".js-displayTbl tbody").empty();
+
+                        fruit.forEach(function(obj) {
+                            let elm = $(".js-hiddenTbl .js-rowInput").clone();
+                            elm.appendTo($(".js-displayTbl tbody"));
+                            elm.find(".js-id").text($(".js-displayTbl tbody tr").length);
+                            elm.find(".js-name").val(obj.name);
+                            elm.find(".js-price").val(obj.price);
+                        });
+
+                        window.localStorage.setItem("fruit", JSON.stringify(fruit));
+                    }
+                } catch (error) {
+                    console.log(error);
+                }
             }
         });
     </script>
