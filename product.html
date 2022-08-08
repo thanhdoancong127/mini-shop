@@ -114,10 +114,16 @@
                 $("#js-importFile").click();
             });
 
-            $("#js-importFile").on("load", function(event) {
-                const fileList = event.target.files;
-                console.log(fileList);
+            $("#js-importFile").on("change", function(event) {
+                var reader = new FileReader();
+                reader.onload = onReaderLoad;
+                reader.readAsText(event.target.files[0]);
             });
+
+            function onReaderLoad(event) {
+                var obj = JSON.parse(event.target.result);
+                console.log(obj);
+            }
         });
     </script>
 </body>
