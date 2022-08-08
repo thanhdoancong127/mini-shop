@@ -169,6 +169,11 @@
             window.localStorage.setItem("fruit", JSON.stringify(fruit));
             window.open("./product.html", "_blank")
         });
+        $(".js-in").on("click", function() {
+            let bill = [];
+            window.localStorage.setItem("bill", JSON.stringify(bill));
+            window.open("./bill.html", "_blank");
+        });
     </script>
 </body>
 </html>

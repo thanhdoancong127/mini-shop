@@ -5,8 +5,75 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bill</title>
+    <script src="./assets/jquery.min.js"></script>
+    <script src="./assets/bootstrap.min.js"></script>
+    <link href="./assets/bootstrap.min.css" rel="stylesheet"/>
+    <link href="./assets/select2.min.css" rel="stylesheet"/>
+    <script src="./assets/select2.min.js"></script>
+    <style>
+        table.table > thead, table.table > tbody {
+            vertical-align: middle !important;
+        }
+    </style>
 </head>
-<body>
-    
+<body style="margin: 10px 4px;">
+    <header style="text-align: center;">
+        <h3>Đại lý trái cây Trung Linh</h3>
+        <p>32 Vũ Lăng, Hoà Phát, Cẩm Lệ, Đà Nẵng, Việt Nam</p>
+        <b>SDT: 0935750038</b>
+    </header>
+    <main>
+        <table class="table" style="font-size: 12px;">
+            <thead style="font-weight: bold;">
+                <tr>
+                    <td>STT</td>
+                    <td style="">
+                        <span>Tên</span><br>
+                        <span>Số Lượng</span>
+                    </td>
+                    <td>Giá</td>
+                    <td>Tiền</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td style="">
+                        <span>Cam sành</span><br>
+                        <span>1.5</span>
+                    </td>
+                    <td>35,000</td>
+                    <td>52,500</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td style="">
+                        <span>Cam Mỹ</span><br>
+                        <span>1.5</span>
+                    </td>
+                    <td>35,000</td>
+                    <td>52,500</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td style="">
+                        <span>Cam Mỹ</span><br>
+                        <span>1.5</span>
+                    </td>
+                    <td>35,000</td>
+                    <td>52,500</td>
+                </tr>
+                <tr>
+                    <td colspan="4" style="text-align: right; padding-right: 40px;">
+                        <b>Tổng tiền: <span>52,500</span></b>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </main>
+    <footer class="container" style="margin-top: 20px;">
+        <h3 style="text-align: center; ">Cám ơn và hẹn gặp lại quý khách</h3>
+        <p style="text-align: right; padding-right: 25px;">Ngày bán: <span>08/08/2022</span></p>
+    </footer>
 </body>
 </html>
