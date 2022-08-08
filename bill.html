@@ -82,11 +82,11 @@
             $(".js-total").text(billObject.total);
             billObject.bill.forEach(function(obj) {
                 let elm = $(".js-hidden .js-rowData").clone();
-                elm.insertAfter($(".js-displayTbl tbody tr").last());
+                elm.insertBefore($(".js-displayTbl tbody tr").last());
                 elm.find(".js-name").text(obj.name);
-                elm.find(".js-price").val(obj.price);
-                elm.find(".js-amount").val(obj.amount);
-                elm.find(".js-unit").val(obj.unit);
+                elm.find(".js-price").text(obj.price);
+                elm.find(".js-amount").text(obj.amount);
+                elm.find(".js-unit").text(obj.unit);
             });
         }
     </script>
