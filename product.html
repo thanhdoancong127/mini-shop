@@ -73,7 +73,7 @@
                 $(".js-hiddenTbl .js-rowEmpty").clone().appendTo($(".js-displayTbl tbody"));
             }
 
-            $(".js-btnDelete").on("click", function(e) {
+            $(".js-displayTbl").on("click", ".js-btnDelete", function(e) {
                 $(e.currentTarget).parents("tr").remove();
                 if($(".js-displayTbl tbody").length == 0) {
                     $(".js-hiddenTbl .js-rowEmpty").clone().appendTo($(".js-displayTbl tbody"));
