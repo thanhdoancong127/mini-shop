@@ -81,16 +81,16 @@
             fruit.map(function(val, index) {
                 $(".js-search").append("<option value='"+ val.id +"'>"+ val.name +"</option>");
             });
-            }).done(function() {
-                console.log( "second success" );
-            }).fail(function() {
-                console.log( "error" );
-            }).always(function() {
-                console.log( "complete" );
-            });
+        //     }).done(function() {
+        //         console.log( "second success" );
+        //     }).fail(function() {
+        //         console.log( "error" );
+        //     }).always(function() {
+        //         console.log( "complete" );
+        //     });
         }
 
-        if(!window.localStorage.getItem("fruit")) {
+        if(window.localStorage.getItem("fruit") == "undefined") {
             getData();
         } else {
             fruit = JSON.parse(window.localStorage.getItem("fruit"));
@@ -142,7 +142,7 @@
                 $htmlElement.find(".js-name").text(object[0].name);
                 $htmlElement.find(".js-name").data("id", object[0].id);
                 $htmlElement.find(".js-amount").on("change", "input", function(e) {
-                    $htmlElement.find(".js-unit").text($(e.currentTarget).val() * object[0].price);
+                    $htmlElement.find(".js-unit").text(Math.round($(e.currentTarget).val() * object[0].price));
                     tinhtien();
                 });
                 $htmlElement.find(".js-price").text(object[0].price);

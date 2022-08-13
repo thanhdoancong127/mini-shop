@@ -39,15 +39,15 @@
         <p style="font-size: 60px;">SDT: 0935750038</p>
     </header>
     <main>
-        <table class="table js-displayTbl" style="font-size: 50px; font-weight: bold;">
+        <table class="table table-bordered js-displayTbl" style="font-size: 50px; font-weight: bold;">
             <tbody>
-                <tr class="" style="">
-                    <td style="">
+                <tr class="" style="border-width:4px 0px; border-color: black;">
+                    <td style="border-width:0px 4px; border-color: black;">
                         <span>Tên</span><br>
                         <span>Số Lượng</span>
                     </td>
-                    <td>Giá</td>
-                    <td>Tiền</td>
+                    <td style="border-width:0px 4px; border-color: black;">Giá</td>
+                    <td style="border-width:0px 4px; border-color: black;">Tiền</td>
                 </tr>
                 <tr>
                     <td colspan="3" style="text-align: right;">
@@ -59,16 +59,16 @@
     </main>
     <footer class="container" style="margin-top: 20px;">
         <h1 style="text-align: center; font-size: 60px; font-weight: bold;">Cám ơn và hẹn gặp lại quý khách</h1>
-        <p style="text-align: right; padding-right: 25px; font-size: 60px; font-weight: bold;">Ngày bán: <span>13/08/2022</span></p>
+        <p style="text-align: right; padding-right: 25px; font-size: 60px; font-weight: bold;">Ngày bán: <span class="js-now">13/08/2022</span></p>
     </footer>
     <table style="display: none;" class="js-hidden">
-        <tr class="js-rowData">
-            <td>
+        <tr class="js-rowData" style="border-width:4px 0px; border-color: black;">
+            <td style="border-width:0px 4px; border-color: black;">
                 <span class="js-name"></span><br>
                 <span class="js-amount"></span>
             </td>
-            <td class="js-price"></td>
-            <td class="js-unit"></td>
+            <td class="js-price" style="border-width:0px 4px; border-color: black;"></td>
+            <td class="js-unit" style="border-width:0px 4px; border-color: black;"></td>
         </tr>
     </div>
 
@@ -87,6 +87,17 @@
                 elm.find(".js-amount").text(obj.amount);
                 elm.find(".js-unit").text(obj.unit);
             });
+
+            const today = new Date();
+            const yyyy = today.getFullYear();
+            let mm = today.getMonth() + 1; // Months start at 0!
+            let dd = today.getDate();
+
+            if (dd < 10) dd = '0' + dd;
+            if (mm < 10) mm = '0' + mm;
+
+            const formattedToday = dd + '/' + mm + '/' + yyyy;
+            $(".js-now").text(formattedToday);
 
             window.localStorage.removeItem("billObject");
             $(document).ready(function() {
