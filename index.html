@@ -81,13 +81,13 @@
             fruit.map(function(val, index) {
                 $(".js-search").append("<option value='"+ val.id +"'>"+ val.name +"</option>");
             });
-        //     }).done(function() {
-        //         console.log( "second success" );
-        //     }).fail(function() {
-        //         console.log( "error" );
-        //     }).always(function() {
-        //         console.log( "complete" );
-        //     });
+            }).done(function() {
+                console.log( "second success" );
+            }).fail(function() {
+                console.log( "error" );
+            }).always(function() {
+                console.log( "complete" );
+            });
         }
 
         if(window.localStorage.getItem("fruit") == "undefined") {
