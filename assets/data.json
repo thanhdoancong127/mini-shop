@@ -18,8 +18,8 @@
     { "id": 16, "name": "Thanh long đỏ", "price": "30000" },
     { "id": 17, "name": "Nhãn thái", "price": "50000" },
     { "id": 18, "name": "Chôm ", "price": "55000" },
-    { "id": 19, "name": "Giỏ S", "price": "30000" },
     { "id": 20, "name": "Phụ kiện", "price": "45000" },
+    { "id": 19, "name": "Giỏ S", "price": "30000" },
     { "id": 21, "name": "Giỏ M", "price": "40000" },
     { "id": 22, "name": "Giỏ L", "price": "50000" }
   ]

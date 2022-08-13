@@ -90,7 +90,7 @@
             });
         }
 
-        if(window.localStorage.getItem("fruit") == "undefined") {
+        if(!window.localStorage.getItem("fruit") || window.localStorage.getItem("fruit") == "undefined") {
             getData();
         } else {
             fruit = JSON.parse(window.localStorage.getItem("fruit"));
