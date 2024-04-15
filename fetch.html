@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Price Scraper</title>
+</head>
+<body>
+
+    <input type="file" id="fileInput">
+    <button id="fetchPricesBtn">Fetch Prices</button>
+    <div id="priceResults"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        document.getElementById('fetchPricesBtn').addEventListener('click', function() {
+            const fileInput = document.getElementById('fileInput');
+            const file = fileInput.files[0];
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                const urls = event.target.result.split('\n');
+                urls.forEach(url => {
+                    axios.get(url)
+                        .then(response => {
+                            const html = response.data;
+                            const $ = cheerio.load(html);
+                            const text = $('p:has(strong)').text();
+                            const name = text.substring(text.indexOf("The live ") + 9, text.indexOf("price today") - 1);
+                            const price = text.substring(text.indexOf("is") + 4, text.indexOf("USD"));
+                            $('#priceResults').append(`<p>${price}</p>`);
+                        })
+                        .catch(error => {
+                            console.error(error);
+                        });
+                });
+            };
+            reader.readAsText(file);
+        });
+    </script>
+</body>
+</html>
