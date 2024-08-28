@@ -90,10 +90,6 @@
 <body>
     <div class="container">
         <div class="form-group">
-            <label for="fileInput">Choose JSON files:</label>
-            <input type="file" class="form-control" id="fileInput" multiple>
-        </div>
-        <div class="form-group">
             <label for="jsonFileSelect">Select a Essessment file:</label>
             <select class="form-control" id="jsonFileSelect">
                 <option value="" selected>--Select a file--</option>
@@ -163,10 +159,12 @@
         $(document).ready(function() {
 
             var jsonData;
+            let files = [];
+            var selectBox = $('#jsonFileSelect');
+            var INDEX_GLB = 0;
 
             $(".js-reset").on("click", function() {
                 $(".exam").empty(); 
-                $('#fileInput').trigger('change');
             });
 
             $(".js-submit").on("click", function() {
@@ -231,37 +229,38 @@
                 $(".exam").append(questionElement);
                 answers.find(".answer:first-child").remove();
             }
+        
+            async function loadFileFromURL(url) {
+                const response = await fetch(url);
+                const blob = await response.blob();
+                files.push(new File([blob], url.split("/")[url.split("/").length - 1], { type: blob.type }));
+                selectBox.append('<option value="' + (INDEX_GLB++) + '">' + url.split("/")[url.split("/").length - 1] + '</option>');
+            }
 
-            // Handle file selection
-            $('#fileInput').on('change', function(event) {
-                var files = event.target.files;
-                var selectBox = $('#jsonFileSelect');
-                selectBox.empty(); // Clear existing options
-                selectBox.append('<option value="">--Select a file--</option>'); // Add default option
+            loadFileFromURL("https://thanhdoancong127.github.io/assignment/folder/examination-1.json");
+            loadFileFromURL("https://thanhdoancong127.github.io/assignment/folder/examination-2.json");
+            loadFileFromURL("https://thanhdoancong127.github.io/assignment/folder/examination-3.json");
+            loadFileFromURL("https://thanhdoancong127.github.io/assignment/folder/examination-4.json");
+            loadFileFromURL("https://thanhdoancong127.github.io/assignment/folder/examination-5.json");
+            loadFileFromURL("https://thanhdoancong127.github.io/assignment/folder/examination-6.json");
 
-                for (var i = 0; i < files.length; i++) {
-                    var file = files[i];
-                    selectBox.append('<option value="' + i + '">' + file.name + '</option>');
+            // Handle file selection from dropdown
+            selectBox.on('change', function() {
+                var selectedIndex = $(this).val();
+                if (selectedIndex !== "") {
+                    var selectedFile = files[selectedIndex];
+                    var reader = new FileReader();
+                    
+                    reader.onload = function(e) {
+                        jsonData = JSON.parse(e.target.result);
+
+                        $(shuffleArray(jsonData)).each(function(index, data) {
+                            answerType(data.assessment_type, index, data);
+                        })
+                    };
+
+                    reader.readAsText(selectedFile); // Read the selected file as text
                 }
-
-                // Handle file selection from dropdown
-                selectBox.on('change', function() {
-                    var selectedIndex = $(this).val();
-                    if (selectedIndex !== "") {
-                        var selectedFile = files[selectedIndex];
-                        var reader = new FileReader();
-                        
-                        reader.onload = function(e) {
-                            jsonData = JSON.parse(e.target.result);
-
-                            $(shuffleArray(jsonData)).each(function(index, data) {
-                                answerType(data.assessment_type, index, data);
-                            })
-                        };
-
-                        reader.readAsText(selectedFile); // Read the selected file as text
-                    }
-                });
             });
         });
     </script>
