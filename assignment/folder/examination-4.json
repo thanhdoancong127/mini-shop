@@ -1,0 +1,1862 @@
+[
+	{
+		"_class": "assessment",
+		"id": 17824934,
+		"assessment_type": "multi-select",
+		"prompt": {
+			"answers": [
+				"<p>Use EC2 User Data to customize the dynamic installation parts at boot time</p>",
+				"<p>Create a Golden AMI with the static installation components already setup</p>",
+				"<p>Store the installation files in S3 so they can be quickly retrieved</p>",
+				"<p>Use EC2 User Data to install the application at boot time</p>",
+				"<p>Use Elastic Beanstalk deployment caching feature</p>"
+			],
+			"relatedLectureIds": "",
+			"feedbacks": [
+				"",
+				"",
+				"",
+				"",
+				""
+			],
+			"question": "<p>Your company is deploying a website running on Elastic Beanstalk. That website takes over 45 minutes to install and contains both static and dynamic files that must be generated during the installation process. As a Solutions Architect, you would like to bring the time to create a new Instance in your Elastic Beanstalk deployment to being less than 2 minutes. What do you recommend? (select two)</p>\n",
+			"explanation": "<p>When you create an AWS Elastic Beanstalk environment, you can specify an Amazon Machine Image (AMI) to use instead of the standard Elastic Beanstalk AMI included in your platform version. A custom AMI can improve provisioning times when instances are launched in your environment if you need to install a lot of software that isn't included in the standard AMIs. Read more here: https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/using-features.customenv.html</p>\n"
+		},
+		"correct_response": [
+			"a",
+			"b"
+		],
+		"section": "Design Resilient Architectures",
+		"question_plain": "Your company is deploying a website running on Elastic Beanstalk. That website takes over 45 minutes to install and contains both static and dynamic files that must be generated during the installation process. As a Solutions Architect, you would like to bring the time to create a new Instance in your Elastic Beanstalk deployment to being less than 2 minutes. What do you recommend? (select two)",
+		"related_lectures": []
+	},
+	{
+		"_class": "assessment",
+		"id": 17825028,
+		"assessment_type": "multiple-choice",
+		"prompt": {
+			"answers": [
+				"<p>EFS</p>",
+				"<p>Instance Store</p>",
+				"<p>EBS</p>",
+				"<p>S3</p>"
+			],
+			"relatedLectureIds": "",
+			"feedbacks": [
+				"",
+				"",
+				"",
+				""
+			],
+			"question": "<p>As a Solutions Architect, you are tasked to design a distributed application that will run on various EC2 instances. This application needs to have the highest performance local disk to cache data, and has survival of data through an EC2 to EC2 replication mechanism. As such, an instance losing its data by being stopped or terminated is an acceptable behavior. What storage solution do you recommend?</p>\n",
+			"explanation": "<p>Instance Store will have the highest disk performance but comes with the storage being wiped if the instance is terminated, which is acceptable in this case. EBS volumes would provide good performance as far as disk goes, but not as good as Instance Store. EBS data survives instance termination or reboots. EFS is a network drive, and finally S3 cannot be mounted as a local disk (natively).</p>\n"
+		},
+		"correct_response": [
+			"b"
+		],
+		"section": "Design Resilient Architectures",
+		"question_plain": "As a Solutions Architect, you are tasked to design a distributed application that will run on various EC2 instances. This application needs to have the highest performance local disk to cache data, and has survival of data through an EC2 to EC2 replication mechanism. As such, an instance losing its data by being stopped or terminated is an acceptable behavior. What storage solution do you recommend?",
+		"related_lectures": []
+	},
+	{
+		"_class": "assessment",
+		"id": 17825012,
+		"assessment_type": "multiple-choice",
+		"prompt": {
+			"answers": [
+				"<p>The TTL is still in effect</p>",
+				"<p>The health checks are not passing</p>",
+				"<p>The Alias Record is misconfigured</p>",
+				"<p>The CNAME Record is misconfigured</p>"
+			],
+			"relatedLectureIds": "",
+			"feedbacks": [
+				"",
+				"",
+				"",
+				""
+			],
+			"question": "<p>Your application has been revamped from a solutions architecture perspective. To finalise the migration to the new architecture, you have updated a Route 53 simple record to point \"myapp.mydomain.com\" from the old Load Balancer to a new load balancer, it looks like the users are still not redirected to your new load balancer. What is happening?</p>\n",
+			"explanation": "<p>Simple Records do not have health checks, here the most likely issue is that the TTL is still in effect so you have to wait until it expires for the new users to perform another DNS query and get the value for your new Load Balancer.</p>\n"
+		},
+		"correct_response": [
+			"a"
+		],
+		"section": "Design Resilient Architectures",
+		"question_plain": "Your application has been revamped from a solutions architecture perspective. To finalise the migration to the new architecture, you have updated a Route 53 simple record to point \"myapp.mydomain.com\" from the old Load Balancer to a new load balancer, it looks like the users are still not redirected to your new load balancer. What is happening?",
+		"related_lectures": []
+	},
+	{
+		"_class": "assessment",
+		"id": 17824922,
+		"assessment_type": "multiple-choice",
+		"prompt": {
+			"answers": [
+				"<p>SNS</p>",
+				"<p>Kinesis</p>",
+				"<p>SES</p>",
+				"<p>SQS</p>"
+			],
+			"relatedLectureIds": "",
+			"feedbacks": [
+				"",
+				"",
+				"",
+				""
+			],
+			"question": "<p>Your company is a revolutionary IoT company, that is planning on distributing a sensor to install in people's home to measure the temperature and make adjustments to the heating system. In order to provide adjustment commands, you would like to have a streaming system that performs real time analytics on the data. Once the analytics are done, you would like to emit notifications back to the mobile applications of the users. Which technology allows you to emit such notifications?</p>\n",
+			"explanation": "<p>SQS is a queue and allows you to process jobs asynchronously, it doesn't have a built-in capability to send notifications. Kinesis will be great for event streaming from the IoT devices, but not for sending notifications as it doesn't have such feature. SES is an email sending service. SNS is a notification service and will be perfect for our use case.</p>\n"
+		},
+		"correct_response": [
+			"a"
+		],
+		"section": "Design Resilient Architectures",
+		"question_plain": "Your company is a revolutionary IoT company, that is planning on distributing a sensor to install in people's home to measure the temperature and make adjustments to the heating system. In order to provide adjustment commands, you would like to have a streaming system that performs real time analytics on the data. Once the analytics are done, you would like to emit notifications back to the mobile applications of the users. Which technology allows you to emit such notifications?",
+		"related_lectures": []
+	},
+	{
+		"_class": "assessment",
+		"id": 17824982,
+		"assessment_type": "multiple-choice",
+		"prompt": {
+			"answers": [
+				"<p>Store the installation files in S3 for quicker retrieval</p>",
+				"<p>Use EC2 User Data to speed up the installation process</p>",
+				"<p>Create an AMI after installing the software and use that AMI to recover in other regions</p>",
+				"<p>Create an AMI after installing the software and copy that AMI across regions</p>"
+			],
+			"relatedLectureIds": "",
+			"feedbacks": [
+				"",
+				"",
+				"",
+				""
+			],
+			"question": "<p>As part of your disaster recovery strategy, you have determined that you need to quickly be able to recover your software with a RTO of 5 minutes, in any region. Your software currently takes over 45 minutes to install on a Linux system. As a Solutions Architect, what do you recommend?</p>\n",
+			"explanation": "<p>EC2 User Data would run the same installation script, with the same time of 45 minutes. S3 won't help with speeding up the installation, as it would still need to happen on the EC2 instance. Here you need to create an AMI, but because AMI are bounded in the regions they are created, they need to be copied across regions for disaster recovery purposes</p>\n"
+		},
+		"correct_response": [
+			"d"
+		],
+		"section": "Design Resilient Architectures",
+		"question_plain": "As part of your disaster recovery strategy, you have determined that you need to quickly be able to recover your software with a RTO of 5 minutes, in any region. Your software currently takes over 45 minutes to install on a Linux system. As a Solutions Architect, what do you recommend?",
+		"related_lectures": []
+	},
+	{
+		"_class": "assessment",
+		"id": 17824916,
+		"assessment_type": "multiple-choice",
+		"prompt": {
+			"answers": [
+				"<p>Implement an IAM policy to forbid users to change S3 bucket settings</p>",
+				"<p>Use S3 access logs and analyze them using Athena</p>",
+				"<p>Implement a bucket policy requiring MFA for any operations</p>",
+				"<p>Use CloudTrail to analyze API calls</p>"
+			],
+			"relatedLectureIds": "",
+			"feedbacks": [
+				"",
+				"",
+				"",
+				""
+			],
+			"question": "<p>Your company has grown from a small startup to now being a leading tech company employing over 1000 people. As part of the scaling of your AWS team, you have observed some strange behavior with S3 buckets settings regularly being changed. How can you figure out what's happening without restricting the rights of your users?</p>\n",
+			"explanation": "<p>Implementing an IAM policy to forbid users would be disruptive and wouldn't go unnoticed. S3 access logs would not provide us the necessary information, and changing the bucket policy to require MFA would not go unnoticed. Here, and in general, to analyze any API calls made within your AWS account, you should use CloudTrail</p>\n"
+		},
+		"correct_response": [
+			"d"
+		],
+		"section": "Design Resilient Architectures",
+		"question_plain": "Your company has grown from a small startup to now being a leading tech company employing over 1000 people. As part of the scaling of your AWS team, you have observed some strange behavior with S3 buckets settings regularly being changed. How can you figure out what's happening without restricting the rights of your users?",
+		"related_lectures": []
+	},
+	{
+		"_class": "assessment",
+		"id": 17825026,
+		"assessment_type": "multiple-choice",
+		"prompt": {
+			"answers": [
+				"<p>Use IAM Auth and attach an IAM role to Lambda</p>",
+				"<p>Use Redis Auth</p>",
+				"<p>Create an inbound rule to restrict access to Redis Auth only from the Lambda security group</p>",
+				"<p>Enable KMS Encryption</p>"
+			],
+			"relatedLectureIds": "",
+			"feedbacks": [
+				"",
+				"",
+				"",
+				""
+			],
+			"question": "<p>Your company offers a web portal to match developers to clients who need their help. As a Solutions Architect, you've designed the architecture of the website to follow some serverless pattern on the API side, with API Gateway and AWS Lambda. The backend is leveraging an RDS PostgreSQL database and you have chosen to implement caching using a Redis ElastiCache cluster. You would like to increase the security of your authentication to Redis from the Lambda function, leveraging a username and password combination. What do you recommend?</p>\n",
+			"explanation": "<p>IAM Auth is not supported by ElastiCache. All other options increase security, but only the Redis Auth one helps with the username / password security</p>\n"
+		},
+		"correct_response": [
+			"b"
+		],
+		"section": "Design Secure Applications and Architectures",
+		"question_plain": "Your company offers a web portal to match developers to clients who need their help. As a Solutions Architect, you've designed the architecture of the website to follow some serverless pattern on the API side, with API Gateway and AWS Lambda. The backend is leveraging an RDS PostgreSQL database and you have chosen to implement caching using a Redis ElastiCache cluster. You would like to increase the security of your authentication to Redis from the Lambda function, leveraging a username and password combination. What do you recommend?",
+		"related_lectures": []
+	},
+	{
+		"_class": "assessment",
+		"id": 17825016,
+		"assessment_type": "multiple-choice",
+		"prompt": {
+			"answers": [
+				"<p>It ensures the S3 bucket is exposing an external IP within the CIDR range specified, except one IP</p>",
+				"<p>It authorises an entire CIDR except one IP address to access the S3 bucket</p>",
+				"<p>It ensures EC2 instances that have inherited a security group can access the bucket</p>",
+				"<p>It authorises an IP address and a CIDR to access the S3 bucket</p>"
+			],
+			"relatedLectureIds": "",
+			"feedbacks": [
+				"",
+				"",
+				"",
+				""
+			],
+			"question": "<p>What does this bucket policy do?</p>\n\n<pre><code>{\n \"Version\": \"2012-10-17\",\n \"Id\": \"S3PolicyId1\",\n \"Statement\": [\n   {\n     \"Sid\": \"IPAllow\",\n     \"Effect\": \"Allow\",\n     \"Principal\": \"*\",\n     \"Action\": \"s3:*\",\n     \"Resource\": \"arn:aws:s3:::examplebucket/*\",\n     \"Condition\": {\n        \"IpAddress\": {\"aws:SourceIp\": \"54.240.143.0/24\"},\n        \"NotIpAddress\": {\"aws:SourceIp\": \"54.240.143.188/32\"}\n     }\n   }\n ]\n}\n</code></pre>\n",
+			"explanation": "<p>\"Effect\": \"Allow\"\nAllow action\n\"Principal\": \"<em>\",\nAnyone\n\"Action\": \"s3:</em>\",\nAny S3 API\n\"Resource\": \"arn:aws:s3:::examplebucket/*\",\nOn the bucket examplebucket and its content\n\"Condition\": {\n         \"IpAddress\": {\"aws:SourceIp\": \"54.240.143.0/24\"},\n         \"NotIpAddress\": {\"aws:SourceIp\": \"54.240.143.188/32\"}\n      }\nSource IP must be in the CIDR \"54.240.143.0/24\" (== 54.240.143.0 - 54.240.143.255)\nBut not be in the CIDR \"54.240.143.188/32\" (== 1 IP, 54.240.143.188/32)</p>\n"
+		},
+		"correct_response": [
+			"b"
+		],
+		"section": "Design Resilient Architectures",
+		"question_plain": "What does this bucket policy do?\n\n{\n \"Version\": \"2012-10-17\",\n \"Id\": \"S3PolicyId1\",\n \"Statement\": [\n   {\n     \"Sid\": \"IPAllow\",\n     \"Effect\": \"Allow\",\n     \"Principal\": \"*\",\n     \"Action\": \"s3:*\",\n     \"Resource\": \"arn:aws:s3:::examplebucket/*\",\n     \"Condition\": {\n        \"IpAddress\": {\"aws:SourceIp\": \"54.240.143.0/24\"},\n        \"NotIpAddress\": {\"aws:SourceIp\": \"54.240.143.188/32\"}\n     }\n   }\n ]\n}",
+		"related_lectures": []
+	},
+	{
+		"_class": "assessment",
+		"id": 17824992,
+		"assessment_type": "multiple-choice",
+		"prompt": {
+			"answers": [
+				"<p>Use a Network Load Balancer with an ASG</p>",
+				"<p>Use a Classic Load Balancer with an ASG</p>",
+				"<p>Use an Application Load Balancer with an ASG</p>",
+				"<p>Use an ASG with Dynamic Elastic IPs attachment</p>"
+			],
+			"relatedLectureIds": "",
+			"feedbacks": [
+				"",
+				"",
+				"",
+				""
+			],
+			"question": "<p>You are working for a SaaS (Software as a Service) company as a solutions architect and help design solutions for your company's customers. One of your customer is a bank and has a strong requirement to whitelist up to two public IPs when the bank is accessing external services across the public web. Which architectural choice do you recommend to maintain high availability, scale to up to 10 instances and comply with the bank's requirements?</p>\n",
+			"explanation": "<p>Network Load Balancers expose a fixed IP to the public web, therefore allowing your application to be predictably reached using these IPs, while allowing you to scale your application behind the Network Load Balancer using an ASG. Application and Classic Load Balancers expose a fixed DNS (=URL). Finally, the ASG does not have a dynamic Elastic IPs attachment feature</p>\n"
+		},
+		"correct_response": [
+			"a"
+		],
+		"section": "Design Resilient Architectures",
+		"question_plain": "You are working for a SaaS (Software as a Service) company as a solutions architect and help design solutions for your company's customers. One of your customer is a bank and has a strong requirement to whitelist up to two public IPs when the bank is accessing external services across the public web. Which architectural choice do you recommend to maintain high availability, scale to up to 10 instances and comply with the bank's requirements?",
+		"related_lectures": []
+	},
+	{
+		"_class": "assessment",
+		"id": 17825034,
+		"assessment_type": "multiple-choice",
+		"prompt": {
+			"answers": [
+				"<p>Neptune</p>",
+				"<p>RDS</p>",
+				"<p>ElastiCache</p>",
+				"<p>DynamoDB</p>"
+			],
+			"relatedLectureIds": "",
+			"feedbacks": [
+				"",
+				"",
+				"",
+				""
+			],
+			"question": "<p>Your client is a financial market trading firm and they are looking for a database that has single digit latency, can scale horizontally and is serverless, so that they can perform high frequency trading reliably. As a Solutions Architect, what database do you recommend to them?</p>\n",
+			"explanation": "<p>ElastiCache / RDS / Neptune are not serverless databases. DynamoDB is serverless, single digit latency and horizontally scales.\nReference:</p>\n"
+		},
+		"correct_response": [
+			"d"
+		],
+		"section": "Design Resilient Architectures",
+		"question_plain": "Your client is a financial market trading firm and they are looking for a database that has single digit latency, can scale horizontally and is serverless, so that they can perform high frequency trading reliably. As a Solutions Architect, what database do you recommend to them?",
+		"related_lectures": []
+	},
+	{
+		"_class": "assessment",
+		"id": 17824964,
+		"assessment_type": "multiple-choice",
+		"prompt": {
+			"answers": [
+				"<p>Neptune</p>",
+				"<p>Redshift</p>",
+				"<p>ElasticSearch</p>",
+				"<p>RDS - Aurora</p>"
+			],
+			"relatedLectureIds": "",
+			"feedbacks": [
+				"",
+				"",
+				"",
+				""
+			],
+			"question": "<p>As a Solutions Architect, you plan on creating a social media website where users can be friends with each other, and like each other's posts. You plan on performing some complicated queries such as \"What are the number of likes on the posts that have been posted by the friends of Mike?\". What database do you suggest?</p>\n",
+			"explanation": "<p>Here, we need a graph database due to the highly connected datasets and queries, therefore Neptune is our best answer</p>\n"
+		},
+		"correct_response": [
+			"a"
+		],
+		"section": "Design Resilient Architectures",
+		"question_plain": "As a Solutions Architect, you plan on creating a social media website where users can be friends with each other, and like each other's posts. You plan on performing some complicated queries such as \"What are the number of likes on the posts that have been posted by the friends of Mike?\". What database do you suggest?",
+		"related_lectures": []
+	},
+	{
+		"_class": "assessment",
+		"id": 17825020,
+		"assessment_type": "multiple-choice",
+		"prompt": {
+			"answers": [
+				"<p>Create a Lambda function to periodically backup and restore the Aurora database in another region</p>",
+				"<p>Use Aurora Read Replicas</p>",
+				"<p>Use a DynamoDB Stream</p>",
+				"<p>Use Aurora Multi AZ</p>"
+			],
+			"relatedLectureIds": "",
+			"feedbacks": [
+				"",
+				"",
+				"",
+				""
+			],
+			"question": "<p>Your company offers a web portal to match developers to clients who need their help. As a Solutions Architect, you've designed the architecture of the website to follow some serverless pattern on the API side, with API Gateway and AWS Lambda. The backend is leveraging an RDS Aurora PostgreSQL database. The web portal was launched in Americas, but it has been doing really well and you would like to deploy the same solution in Europe, where a read only version will be available to improve latency. You plan on deploying the API Gateway and AWS Lambda using CloudFormation, but would like to have a read only copy of your data in Europe as well. What do you recommend?</p>\n",
+			"explanation": "<p>Aurora Read Replicas can be deployed globally</p>\n"
+		},
+		"correct_response": [
+			"b"
+		],
+		"section": "Design Resilient Architectures",
+		"question_plain": "Your company offers a web portal to match developers to clients who need their help. As a Solutions Architect, you've designed the architecture of the website to follow some serverless pattern on the API side, with API Gateway and AWS Lambda. The backend is leveraging an RDS Aurora PostgreSQL database. The web portal was launched in Americas, but it has been doing really well and you would like to deploy the same solution in Europe, where a read only version will be available to improve latency. You plan on deploying the API Gateway and AWS Lambda using CloudFormation, but would like to have a read only copy of your data in Europe as well. What do you recommend?",
+		"related_lectures": []
+	},
+	{
+		"_class": "assessment",
+		"id": 17824946,
+		"assessment_type": "multiple-choice",
+		"prompt": {
+			"answers": [
+				"<p>Use RDS Multi AZ</p>",
+				"<p>Use RDS Read Replicas</p>",
+				"<p>Use ElastiCache</p>",
+				"<p>Use DynamoDB</p>"
+			],
+			"relatedLectureIds": "",
+			"feedbacks": [
+				"",
+				"",
+				"",
+				""
+			],
+			"question": "<p>Your company offers a web portal to match developers to clients who need their help. As a Solutions Architect, you've designed the architecture of the website to follow some serverless pattern on the API side, with API Gateway and AWS Lambda. The backend is leveraging an RDS PostgreSQL database. The website is experiencing high read traffic and as such, the Lambda functions are putting an increased read load on the RDS database. You would like to increase the read throughput of your database, without changing the application's core logic. What do you recommend?</p>\n",
+			"explanation": "<p>RDS Multi AZ helps with disaster recovery in case of an AZ failure. ElastiCache would definitely help with the read load, but would require a refactor of the application's core logic. DynamoDB with DAX would also probably help with the read load, but once again it would require a refactor of the application's core logic. Here, our only option to scale reads is to use RDS Read Replicas</p>\n"
+		},
+		"correct_response": [
+			"b"
+		],
+		"section": "Design Resilient Architectures",
+		"question_plain": "Your company offers a web portal to match developers to clients who need their help. As a Solutions Architect, you've designed the architecture of the website to follow some serverless pattern on the API side, with API Gateway and AWS Lambda. The backend is leveraging an RDS PostgreSQL database. The website is experiencing high read traffic and as such, the Lambda functions are putting an increased read load on the RDS database. You would like to increase the read throughput of your database, without changing the application's core logic. What do you recommend?",
+		"related_lectures": []
+	},
+	{
+		"_class": "assessment",
+		"id": 17824996,
+		"assessment_type": "multiple-choice",
+		"prompt": {
+			"answers": [
+				"<p>Use Multi Part upload</p>",
+				"<p>Use S3 Versioning</p>",
+				"<p>Use AWS Snowball</p>",
+				"<p>Use Direct Connect</p>"
+			],
+			"relatedLectureIds": "",
+			"feedbacks": [
+				"",
+				"",
+				"",
+				""
+			],
+			"question": "<p>You are the solutions architect of a digital media company where there are uploads of around 1TB from an application by the companies collaborating with your company. How will you best handle the upload of these files to S3 ?</p>\n",
+			"explanation": "<p>As the file is greater than 5GB in size, you must use Multi Part upload to upload that file to S3.</p>\n"
+		},
+		"correct_response": [
+			"a"
+		],
+		"section": "Design Resilient Architectures",
+		"question_plain": "You are the solutions architect of a digital media company where there are uploads of around 1TB from an application by the companies collaborating with your company. How will you best handle the upload of these files to S3 ?",
+		"related_lectures": []
+	},
+	{
+		"_class": "assessment",
+		"id": 17824958,
+		"assessment_type": "multiple-choice",
+		"prompt": {
+			"answers": [
+				"<p>Don't use a CloudFormation template to create the database as the CloudFormation service incurs all the service charges.</p>",
+				"<p>Keep the EBS volume to io1 and reduce the IOPS</p>",
+				"<p>Convert the EBS volume to gp2</p>",
+				"<p>Change the EC2 instance type to something much smaller</p>"
+			],
+			"relatedLectureIds": "",
+			"feedbacks": [
+				"",
+				"",
+				"",
+				""
+			],
+			"question": "<p>Your company has been evolving towards creating sandbox environments for developing to work in. The entire infrastructure is managed by AWS CloudFormation to easily re-create stack. An RDS database is managed by CloudFormation in a \"dev\" environment and has been costing a lot of money as it has been mirroring the production setup. Upon doing a cost analysis in Cost Explorer, you find out that the storage layer (io1) is amounting for 90% of the cost, and the EC2 instance type for the remaining 10%. The CloudWatch metrics report that both the EC2 instance and the EBS volume are under-utilized. The CloudWatch metrics show the EBS volume does frequent IO bursts, but the database is rarely steadily used. How can you dramatically reduce costs?</p>\n",
+			"explanation": "<p>Here, keeping as io1 but reducing the iops may interfere with the burst of performance we need. The EC2 instance type changes won't affect the 90% of the costs that are incurred to us. CloudFormation is a free service to use. Therefore, gp2 is the right choice, allowing us to save on cost while keeping a burst in performance when needed</p>\n"
+		},
+		"correct_response": [
+			"c"
+		],
+		"section": "Design Resilient Architectures",
+		"question_plain": "Your company has been evolving towards creating sandbox environments for developing to work in. The entire infrastructure is managed by AWS CloudFormation to easily re-create stack. An RDS database is managed by CloudFormation in a \"dev\" environment and has been costing a lot of money as it has been mirroring the production setup. Upon doing a cost analysis in Cost Explorer, you find out that the storage layer (io1) is amounting for 90% of the cost, and the EC2 instance type for the remaining 10%. The CloudWatch metrics report that both the EC2 instance and the EBS volume are under-utilized. The CloudWatch metrics show the EBS volume does frequent IO bursts, but the database is rarely steadily used. How can you dramatically reduce costs?",
+		"related_lectures": []
+	},
+	{
+		"_class": "assessment",
+		"id": 17824990,
+		"assessment_type": "multiple-choice",
+		"prompt": {
+			"answers": [
+				"<p>The instance with the oldest launch configuration will be terminated in AZ-B</p>",
+				"<p>A random instance in the AZ-A will terminated</p>",
+				"<p>An instance in the AZ-A will be created</p>",
+				"<p>A random instance will be terminated in AZ-B</p>"
+			],
+			"relatedLectureIds": "",
+			"feedbacks": [
+				"",
+				"",
+				"",
+				""
+			],
+			"question": "<p>As a solutions architect, you have created a solution architecture that utilises an ALB with stickiness and an Auto Scaling Group. The ASG spawns across 2 availability zones. AZ-A has 3 EC2 instances and AZ-B has 4 EC2 instances. The ASG is about to go into a scale-in event due to a CloudWatch alarm being triggered. What will happen under the default ASG configuration?</p>\n",
+			"explanation": "<p>AZs will be balanced first, then the instance with the oldest launch configuration within that AZ will be terminated. For a reference to the default termination policy logic, have a look at this link: https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-instance-termination.html</p>\n"
+		},
+		"correct_response": [
+			"a"
+		],
+		"section": "Design Resilient Architectures",
+		"question_plain": "As a solutions architect, you have created a solution architecture that utilises an ALB with stickiness and an Auto Scaling Group. The ASG spawns across 2 availability zones. AZ-A has 3 EC2 instances and AZ-B has 4 EC2 instances. The ASG is about to go into a scale-in event due to a CloudWatch alarm being triggered. What will happen under the default ASG configuration?",
+		"related_lectures": []
+	},
+	{
+		"_class": "assessment",
+		"id": 17824962,
+		"assessment_type": "multi-select",
+		"prompt": {
+			"answers": [
+				"<p>It configures a NACL's inbound rules</p>",
+				"<p>It allows any IP to pass through on the HTTP port</p>",
+				"<p>It only allows the IP <code>0.0.0.0</code> to reach HTTP</p>",
+				"<p>It prevents traffic from reaching on HTTP unless from the IP <code>192.168.1.1</code></p>",
+				"<p>It configures a security group's inbound rules</p>",
+				"<p>It lets traffic flow from one IP on port 22</p>",
+				"<p>It configures a security group's outbound rules</p>"
+			],
+			"relatedLectureIds": "",
+			"feedbacks": [
+				"",
+				"",
+				"",
+				"",
+				"",
+				"",
+				""
+			],
+			"question": "<p>What does this CloudFormation snippet do? (select three)</p>\n\n<pre><code>SecurityGroupIngress:\n     - IpProtocol: tcp\n       FromPort: 80\n       ToPort: 80\n       CidrIp: 0.0.0.0/0\n     - IpProtocol: tcp\n       FromPort: 22\n       ToPort: 22\n       CidrIp: 192.168.1.1/32\n\n</code></pre>\n",
+			"explanation": "<p><code>0.0.0.0/0</code> means any IP, not the IP <code>0.0.0.0</code>. Ingress means traffic going into your instance, and Security Groups are different than NACL. Each \"-\" in our security group rule represents a different rule (YAML syntax)</p>\n"
+		},
+		"correct_response": [
+			"b",
+			"e",
+			"f"
+		],
+		"section": "Design Resilient Architectures",
+		"question_plain": "What does this CloudFormation snippet do? (select three)\n\nSecurityGroupIngress:\n     - IpProtocol: tcp\n       FromPort: 80\n       ToPort: 80\n       CidrIp: 0.0.0.0/0\n     - IpProtocol: tcp\n       FromPort: 22\n       ToPort: 22\n       CidrIp: 192.168.1.1/32",
+		"related_lectures": []
+	},
+	{
+		"_class": "assessment",
+		"id": 17825042,
+		"assessment_type": "multiple-choice",
+		"prompt": {
+			"answers": [
+				"<p>AWS SSO</p>",
+				"<p>Organizations</p>",
+				"<p>Workspaces</p>",
+				"<p>AppSync</p>"
+			],
+			"relatedLectureIds": "",
+			"feedbacks": [
+				"",
+				"",
+				"",
+				""
+			],
+			"question": "<p>You have a VDI (Virtual Desktop Infrastructure) on premise and as a Solutions Architect, you would like to optimize maintenance and management cost by switching to virtual desktops on the AWS Cloud. Which service do you recommend?</p>\n",
+			"explanation": "<p>Amazon WorkSpaces is a managed, secure cloud desktop service. You can use Amazon WorkSpaces to provision either Windows or Linux desktops in just a few minutes and quickly scale to provide thousands of desktops to workers across the globe. You can pay either monthly or hourly, just for the WorkSpaces you launch, which helps you save money when compared to traditional desktops and on-premises VDI solutions</p>\n"
+		},
+		"correct_response": [
+			"c"
+		],
+		"section": "Design Resilient Architectures",
+		"question_plain": "You have a VDI (Virtual Desktop Infrastructure) on premise and as a Solutions Architect, you would like to optimize maintenance and management cost by switching to virtual desktops on the AWS Cloud. Which service do you recommend?",
+		"related_lectures": []
+	},
+	{
+		"_class": "assessment",
+		"id": 17824978,
+		"assessment_type": "multiple-choice",
+		"prompt": {
+			"answers": [
+				"<p>Elastic Beanstalk</p>",
+				"<p>Trusted Advisor</p>",
+				"<p>OpsWorks</p>",
+				"<p>CloudFormation</p>"
+			],
+			"relatedLectureIds": "",
+			"feedbacks": [
+				"",
+				"",
+				"",
+				""
+			],
+			"question": "<p>You are completely operating the us-west-1 region and you have a complex infrastructure composed of many Lambda functions, API Gateways and DynamoDB tables. As part of your disaster recovery strategy, you would like to be able to quickly re-create your entire infrastructure in another region. Which technology choice do you recommend as a Solutions Architect?</p>\n",
+			"explanation": "<p>Elastic Beanstalk cannot manage AWS Lambda functions, OpsWorks is for Chef / Puppet, and Trusted Advisor is to get recommendations regarding the 5 pillars of the well architected framework. CloudFormation is the correct response here</p>\n"
+		},
+		"correct_response": [
+			"d"
+		],
+		"section": "Design Resilient Architectures",
+		"question_plain": "You are completely operating the us-west-1 region and you have a complex infrastructure composed of many Lambda functions, API Gateways and DynamoDB tables. As part of your disaster recovery strategy, you would like to be able to quickly re-create your entire infrastructure in another region. Which technology choice do you recommend as a Solutions Architect?",
+		"related_lectures": []
+	},
+	{
+		"_class": "assessment",
+		"id": 17824928,
+		"assessment_type": "multiple-choice",
+		"prompt": {
+			"answers": [
+				"<p>Use Spot Instances</p>",
+				"<p>Use a Placement Group of Spread</p>",
+				"<p>Optimize the EC2 kernel using EC2 User Data</p>",
+				"<p>Use a Placement Group of Cluster</p>"
+			],
+			"relatedLectureIds": "",
+			"feedbacks": [
+				"",
+				"",
+				"",
+				""
+			],
+			"question": "<p>You are working as a Solutions Architect for a Big Data processing company that has created a distributed data processing framework that performs best if the network performance between the machines processing the data is high. You are deploying your application on AWS, and care mostly about performance. Which deployment do you recommend?</p>\n",
+			"explanation": "<p>Spot instances help with costs, but won't help with intra-EC2 network performance. Optimizing the EC2 kernel won't help with network performance as it's bounded by the EC2 instance type mainly. Placements groups are the answer here, where \"cluster\" guarantees high network performance (correct answer), whereas \"spread\" would guarantee independent failures between instances.</p>\n"
+		},
+		"correct_response": [
+			"d"
+		],
+		"section": "Design Resilient Architectures",
+		"question_plain": "You are working as a Solutions Architect for a Big Data processing company that has created a distributed data processing framework that performs best if the network performance between the machines processing the data is high. You are deploying your application on AWS, and care mostly about performance. Which deployment do you recommend?",
+		"related_lectures": []
+	},
+	{
+		"_class": "assessment",
+		"id": 17825032,
+		"assessment_type": "multiple-choice",
+		"prompt": {
+			"answers": [
+				"<p>Hosts the master pack into S3</p>",
+				"<p>Create a CloudFront distribution</p>",
+				"<p>Upgrade the EC2 instances</p>",
+				"<p>Enable ELB caching</p>"
+			],
+			"relatedLectureIds": "",
+			"feedbacks": [
+				"",
+				"",
+				"",
+				""
+			],
+			"question": "<p>You are a photo hosting service and publish every month a master pack of beautiful mountains images, that are over 50 GB in size and downloaded from all around the world. The content is currently hosted on EFS and distributed by ELB and EC2 instances. You are experiencing high load each month and very high network costs. What can you recommend that won't force an application refactor and reduce network costs and EC2 load dramatically?</p>\n",
+			"explanation": "<p>Hosting the master pack into S3 will require an application code refactor. Upgrading the EC2 instances won't help save network cost and ELB does not have any caching capability. Here you need to create a CloudFront distribution to add a caching layer in front of your ELB. That caching layer will be very effective as the image pack is a static file, and tremendously save in network cost.</p>\n"
+		},
+		"correct_response": [
+			"b"
+		],
+		"section": "Design High-Performing Architectures",
+		"question_plain": "You are a photo hosting service and publish every month a master pack of beautiful mountains images, that are over 50 GB in size and downloaded from all around the world. The content is currently hosted on EFS and distributed by ELB and EC2 instances. You are experiencing high load each month and very high network costs. What can you recommend that won't force an application refactor and reduce network costs and EC2 load dramatically?",
+		"related_lectures": []
+	},
+	{
+		"_class": "assessment",
+		"id": 17825002,
+		"assessment_type": "multiple-choice",
+		"prompt": {
+			"answers": [
+				"<p>Launch a script on the EC2 instance to query the metadata service at <code>http://169.254.169.254/meta-data/ami-update</code></p>",
+				"<p>Create a new launch configuration with the new AMI id</p>",
+				"<p>Swap the underlying root EBS volumes for your instances</p>",
+				"<p>Update the current launch configuration with the new AMI id</p>"
+			],
+			"relatedLectureIds": "",
+			"feedbacks": [
+				"",
+				"",
+				"",
+				""
+			],
+			"question": "<p>You are the systems admin of a web hosting company. The application is deployed behind a network load balancer and an autoscaling group. The system administrator has now released a new cost-optimized AMI and that should be used to launch instances for the Auto Scaling Group. How can you update the ASG to launch from this new AMI ?</p>\n",
+			"explanation": "<p>Launch configurations are immutable meaning they cannot be updated. You have to create a new launch configuration, attach it to the ASG and then terminate old instances / launch new instances</p>\n"
+		},
+		"correct_response": [
+			"b"
+		],
+		"section": "Design High-Performing Architectures",
+		"question_plain": "You are the systems admin of a web hosting company. The application is deployed behind a network load balancer and an autoscaling group. The system administrator has now released a new cost-optimized AMI and that should be used to launch instances for the Auto Scaling Group. How can you update the ASG to launch from this new AMI ?",
+		"related_lectures": []
+	},
+	{
+		"_class": "assessment",
+		"id": 17824940,
+		"assessment_type": "multi-select",
+		"prompt": {
+			"answers": [
+				"<p>SQS</p>",
+				"<p>SNS</p>",
+				"<p>DynamoDB</p>",
+				"<p>Amazon S3</p>",
+				"<p>Kinesis</p>"
+			],
+			"relatedLectureIds": "",
+			"feedbacks": [
+				"",
+				"",
+				"",
+				"",
+				""
+			],
+			"question": "<p>For security purposes, you would like your instances in a private subnet to be able to access the AWS services privately. As such, you would like to deploy a VPC endpoint to access these services. Your employees are asking your which two AWS services require a Gateway Endpoint instead of an Interface Endpoint. What do you reply to them? (select two)</p>\n",
+			"explanation": "<p>You must remember that the two services that use a VPC Endpoint Gateway are Amazon S3 and DynamoDB. The rest are VPC Endpoint Interface</p>\n"
+		},
+		"correct_response": [
+			"c",
+			"d"
+		],
+		"section": "Design High-Performing Architectures",
+		"question_plain": "For security purposes, you would like your instances in a private subnet to be able to access the AWS services privately. As such, you would like to deploy a VPC endpoint to access these services. Your employees are asking your which two AWS services require a Gateway Endpoint instead of an Interface Endpoint. What do you reply to them? (select two)",
+		"related_lectures": []
+	},
+	{
+		"_class": "assessment",
+		"id": 17824942,
+		"assessment_type": "multiple-choice",
+		"prompt": {
+			"answers": [
+				"<p>Pilot Light</p>",
+				"<p>Backup and Restore</p>",
+				"<p>Warm Standby</p>",
+				"<p>Multi Site</p>"
+			],
+			"relatedLectureIds": "",
+			"feedbacks": [
+				"",
+				"",
+				"",
+				""
+			],
+			"question": "<p>You are working as a AWS architect for a government facility which has a critical application with important government records stored. You are asked to setup DR to make sure they dont lose any important records. You are also asked to keep the cost to minimum. You need to the critical core of your application running, but will need to deploy extra components in case of DR to have a fully functional setup. Which DR method would you select ?</p>\n",
+			"explanation": "<p>Read about the disaster recovery whitepaper here: https://d1.awsstatic.com/whitepapers/aws-disaster-recovery.pdf</p>\n"
+		},
+		"correct_response": [
+			"a"
+		],
+		"section": "Design High-Performing Architectures",
+		"question_plain": "You are working as a AWS architect for a government facility which has a critical application with important government records stored. You are asked to setup DR to make sure they dont lose any important records. You are also asked to keep the cost to minimum. You need to the critical core of your application running, but will need to deploy extra components in case of DR to have a fully functional setup. Which DR method would you select ?",
+		"related_lectures": []
+	},
+	{
+		"_class": "assessment",
+		"id": 17825008,
+		"assessment_type": "multiple-choice",
+		"prompt": {
+			"answers": [
+				"<p>An email will be sent to the System Administrator asking for manual intervention</p>",
+				"<p>The CNAME record will be updated to point to the standby DB</p>",
+				"<p>The URL to access the database will change to the standby DB</p>",
+				"<p>The application will be down until the primary database has recovered itself</p>"
+			],
+			"relatedLectureIds": "",
+			"feedbacks": [
+				"",
+				"",
+				"",
+				""
+			],
+			"question": "<p>You are going to deploy a critical database in RDS. To ensure High Availability, you want it to deploy on Multi-AZ environment. What will happen when the primary instance in Multi-AZ goes down ?</p>\n",
+			"explanation": "<p>Multi-AZ means the URL is the same, the failover is automated, and the CNAME will automatically be updated to the point to the standby database.</p>\n"
+		},
+		"correct_response": [
+			"b"
+		],
+		"section": "Design High-Performing Architectures",
+		"question_plain": "You are going to deploy a critical database in RDS. To ensure High Availability, you want it to deploy on Multi-AZ environment. What will happen when the primary instance in Multi-AZ goes down ?",
+		"related_lectures": []
+	},
+	{
+		"_class": "assessment",
+		"id": 17825000,
+		"assessment_type": "multiple-choice",
+		"prompt": {
+			"answers": [
+				"<p>Create an NGINX load balancer on an EC2 instance to have advanced routing capabilities</p>",
+				"<p>Create a Network Load Balancer</p>",
+				"<p>Create a Classic Load Balancer</p>",
+				"<p>Create an Application Load Balancer</p>"
+			],
+			"relatedLectureIds": "",
+			"feedbacks": [
+				"",
+				"",
+				"",
+				""
+			],
+			"question": "<p>Your company is evolving towards a microservice approach for their website and expose their website from the same load balancer, linked to different target groups with different URLs: checkout.mycorp.com, www.mycorp.com, mycorp.com/profile and mycorp.com/search. Which Load Balancer type do you recommend to achieve the routing feature?</p>\n",
+			"explanation": "<p>Path based routing and host based routing are only available for the Application Load Balancer (ALB). Deploying an NGINX load balancer on EC2 would work but would suffer management and scaling issues. Read more here: https://aws.amazon.com/blogs/aws/new-host-based-routing-support-for-aws-application-load-balancers/</p>\n"
+		},
+		"correct_response": [
+			"d"
+		],
+		"section": "Design High-Performing Architectures",
+		"question_plain": "Your company is evolving towards a microservice approach for their website and expose their website from the same load balancer, linked to different target groups with different URLs: checkout.mycorp.com, www.mycorp.com, mycorp.com/profile and mycorp.com/search. Which Load Balancer type do you recommend to achieve the routing feature?",
+		"related_lectures": []
+	},
+	{
+		"_class": "assessment",
+		"id": 17824980,
+		"assessment_type": "multiple-choice",
+		"prompt": {
+			"answers": [
+				"<p>Add a rule authorizing the EC2 security group</p>",
+				"<p>Add a rule authorizing the Aurora security group</p>",
+				"<p>Add a rule authorizing the ASG's subnets CIDR</p>",
+				"<p>Add a rule authorizing the ELB security group</p>"
+			],
+			"relatedLectureIds": "",
+			"feedbacks": [
+				"",
+				"",
+				"",
+				""
+			],
+			"question": "<p>A developer in your company has setup a classic 3 tier architecture comprised of an Application Load Balancer, an Auto Scaling group managing a fleet of EC2 instances and an Aurora database. As a Solutions Architect, you would like to adhere to the security pillar of the well architected framework. How do you configure the security group of the Aurora database to only allow traffic coming from the EC2 instances?</p>\n",
+			"explanation": "<p>Here, the EC2 instances that are part of the ASG are the ones accessing our database layer. Finally, authorizing the entire CIDR of the ASG's subnets is overkill and would allow non ASG instances access Aurora if they were part of the same CIDR. The correct response is to add a rule to the security group attached to Aurora authorizing the EC2 instance's security group</p>\n"
+		},
+		"correct_response": [
+			"a"
+		],
+		"section": "Design High-Performing Architectures",
+		"question_plain": "A developer in your company has setup a classic 3 tier architecture comprised of an Application Load Balancer, an Auto Scaling group managing a fleet of EC2 instances and an Aurora database. As a Solutions Architect, you would like to adhere to the security pillar of the well architected framework. How do you configure the security group of the Aurora database to only allow traffic coming from the EC2 instances?",
+		"related_lectures": []
+	},
+	{
+		"_class": "assessment",
+		"id": 17824948,
+		"assessment_type": "multiple-choice",
+		"prompt": {
+			"answers": [
+				"<p>Distribute the static content through EFS</p>",
+				"<p>Distribute the static content through S3</p>",
+				"<p>Distribute the dynamic content through EFS</p>",
+				"<p>Distribute the dynamic content through S3</p>"
+			],
+			"relatedLectureIds": "",
+			"feedbacks": [
+				"",
+				"",
+				"",
+				""
+			],
+			"question": "<p>You have deployed a microservice to ECS. The application layer is in a Docker container that provides both static and dynamic content through an Application Load Balancer. As the load has been increasing on your application, your ECS cluster is experiencing higher network usage. You have drilled into the network usage and found that 90% of it is due to distributing some static content. As a Solutions Architect, what do you recommend to improve the application's network usage and decrease costs?</p>\n",
+			"explanation": "<p>Distributing the static content through S3 allows to offload most of the network usage to S3 and free up our applications running on ECS. EFS will not change anything as static content on EFS would still have to be distributed by our ECS instances</p>\n"
+		},
+		"correct_response": [
+			"b"
+		],
+		"section": "Design High-Performing Architectures",
+		"question_plain": "You have deployed a microservice to ECS. The application layer is in a Docker container that provides both static and dynamic content through an Application Load Balancer. As the load has been increasing on your application, your ECS cluster is experiencing higher network usage. You have drilled into the network usage and found that 90% of it is due to distributing some static content. As a Solutions Architect, what do you recommend to improve the application's network usage and decrease costs?",
+		"related_lectures": []
+	},
+	{
+		"_class": "assessment",
+		"id": 17825010,
+		"assessment_type": "multiple-choice",
+		"prompt": {
+			"answers": [
+				"<p>Storage Gateway File</p>",
+				"<p>EFS</p>",
+				"<p>Storage Gateway Volume</p>",
+				"<p>Storage Gateway Tape</p>"
+			],
+			"relatedLectureIds": "",
+			"feedbacks": [
+				"",
+				"",
+				"",
+				""
+			],
+			"question": "<p>Your company is currently hosting a Network File System on premise and managing it has proven to be more challenging than initially thought. It would like to adopt an hybrid cloud strategy and connect their on-premise applications to an AWS NFS that is backed by S3. Which service do you recommend?</p>\n",
+			"explanation": "<p>EFS is not explicitly backed by S3 (but it could still work with on-premise instances). Storage Gateway File is the right answer here</p>\n"
+		},
+		"correct_response": [
+			"a"
+		],
+		"section": "Design High-Performing Architectures",
+		"question_plain": "Your company is currently hosting a Network File System on premise and managing it has proven to be more challenging than initially thought. It would like to adopt an hybrid cloud strategy and connect their on-premise applications to an AWS NFS that is backed by S3. Which service do you recommend?",
+		"related_lectures": []
+	},
+	{
+		"_class": "assessment",
+		"id": 17825040,
+		"assessment_type": "multiple-choice",
+		"prompt": {
+			"answers": [
+				"<p>Write a Lambda function with Auth0 3rd party integration</p>",
+				"<p>Cognito</p>",
+				"<p>Enable the AWS Google Login Service</p>",
+				"<p>IAM</p>"
+			],
+			"relatedLectureIds": "",
+			"feedbacks": [
+				"",
+				"",
+				"",
+				""
+			],
+			"question": "<p>As part of the design of a mobile application to match AWS cloud engineers in their city of operations, you have decided to use a traditional serverless architecture using AWS Lambda, API Gateway &amp; DynamoDB. You would like your users to connect through a Google login and have the capability to turn on MFA (Multi Factor Authentication) to have maximum security. Ideally the solution should be fully managed by AWS. Which technology do you recommend for your mobile users account?</p>\n",
+			"explanation": "<p>AWS Google Login service does not exist, Lambda would require to maintain code, and IAM is not for mobile users. Here Cognito is the best technology choice</p>\n"
+		},
+		"correct_response": [
+			"b"
+		],
+		"section": "Design High-Performing Architectures",
+		"question_plain": "As part of the design of a mobile application to match AWS cloud engineers in their city of operations, you have decided to use a traditional serverless architecture using AWS Lambda, API Gateway &amp; DynamoDB. You would like your users to connect through a Google login and have the capability to turn on MFA (Multi Factor Authentication) to have maximum security. Ideally the solution should be fully managed by AWS. Which technology do you recommend for your mobile users account?",
+		"related_lectures": []
+	},
+	{
+		"_class": "assessment",
+		"id": 17825030,
+		"assessment_type": "multiple-choice",
+		"prompt": {
+			"answers": [
+				"<p>NAT Gateways deployed in your public subnet</p>",
+				"<p>NAT Instances deployed in your public subnet</p>",
+				"<p>Internet Gateways deployed in your private subnet</p>",
+				"<p>Egress-Only Internet Gateways deployed in your private subnet</p>"
+			],
+			"relatedLectureIds": "",
+			"feedbacks": [
+				"",
+				"",
+				"",
+				""
+			],
+			"question": "<p>You have implemented a multi tiered networking structure within your VPC, with two public subnets where you can deploy your Application Load Balancers, while having two private subnets to deploy your application on EC2 instances. As part of your security and compliance needs, you are requiring these EC2 instances to have access to the internet in order to receive software and OS updates at any time. You would like the solutions to be fully managed by AWS and working over IPv4. Which technology do you recommend?</p>\n",
+			"explanation": "<p>NAT Instances would work but won't scale and you would have to manage them (as they're EC2 instances). Egress-Only Internet Gateways are for IPv6, not IPv4. Internet Gateways must be deployed in a public subnet. Therefore you must use a NAT Gateway in your public subnet in order to provide internet access to your instances in your private subnets.</p>\n"
+		},
+		"correct_response": [
+			"a"
+		],
+		"section": "Design High-Performing Architectures",
+		"question_plain": "You have implemented a multi tiered networking structure within your VPC, with two public subnets where you can deploy your Application Load Balancers, while having two private subnets to deploy your application on EC2 instances. As part of your security and compliance needs, you are requiring these EC2 instances to have access to the internet in order to receive software and OS updates at any time. You would like the solutions to be fully managed by AWS and working over IPv4. Which technology do you recommend?",
+		"related_lectures": []
+	},
+	{
+		"_class": "assessment",
+		"id": 17824994,
+		"assessment_type": "multiple-choice",
+		"prompt": {
+			"answers": [
+				"<p>DynamoDB</p>",
+				"<p>Redshift</p>",
+				"<p>Aurora</p>",
+				"<p>RDS</p>"
+			],
+			"relatedLectureIds": "",
+			"feedbacks": [
+				"",
+				"",
+				"",
+				""
+			],
+			"question": "<p>Your company is a revolutionary IoT company, that is planning on distributing a sensor to install in people's home to measure the temperature and make adjustments to the heating system. In order to provide adjustment commands, the sensors must insert the data in a database, from which a stream of changes will be analyzed and acted upon. You would like this database to be horizontally scalable and highly available. You would like to have Auto Scaling capabilities and change the data schema over time, in case you update your devices. Which database do you recommend?</p>\n",
+			"explanation": "<p>DynamoDB is horizontally scalable, has a DynamoDB streams capability and is multi AZ by default. On top of it, we can adjust the RCU and WCU automatically using Auto Scaling.</p>\n"
+		},
+		"correct_response": [
+			"a"
+		],
+		"section": "Design High-Performing Architectures",
+		"question_plain": "Your company is a revolutionary IoT company, that is planning on distributing a sensor to install in people's home to measure the temperature and make adjustments to the heating system. In order to provide adjustment commands, the sensors must insert the data in a database, from which a stream of changes will be analyzed and acted upon. You would like this database to be horizontally scalable and highly available. You would like to have Auto Scaling capabilities and change the data schema over time, in case you update your devices. Which database do you recommend?",
+		"related_lectures": []
+	},
+	{
+		"_class": "assessment",
+		"id": 17824930,
+		"assessment_type": "multiple-choice",
+		"prompt": {
+			"answers": [
+				"<p>Install a CloudWatch Logs agents on the EC2 instances to send logs to CloudWatch</p>",
+				"<p>Disable the Termination from the ASG any time a user reports an issue</p>",
+				"<p>Make a snapshot of the EC2 instance just before it gets terminated</p>",
+				"<p>Use AWS Lambda to regularly SSH into the EC2 instances and copy the log files to S3</p>"
+			],
+			"relatedLectureIds": "",
+			"feedbacks": [
+				"",
+				"",
+				"",
+				""
+			],
+			"question": "<p>You have built an application that is deployed with an Elastic Load Balancer and an Auto Scaling Group. As a solutions architect, you have configured aggressive CloudWatch alarms, making your Auto Scaling Group scale in and out very quickly, renewing your fleet of EC2 instances on a daily basis. A production bug appeared two days ago, but the team cannot SSH into the instance to debug the issue due to the fact it has already been terminated by the ASG. The log files were kept on the EC2 instance. How could you solve that situation in the future ?</p>\n",
+			"explanation": "<p>Disabling the Termination from the ASG would prevent our ASG to be Elastic and impact our costs. Making a snapshot of the EC2 instance before it gets terminated <em>could</em> work but it's tedious, not elastic and very expensive, as all we're interested about are log files. Using AWS Lambda would be extremely hard to use for this task. Here, the natural and by far easiest solution would be to use the CloudWatch Logs agents on the EC2 instances to automatically send log files into CloudWatch, so we can analyze them in the future easily should any problems arise.</p>\n"
+		},
+		"correct_response": [
+			"a"
+		],
+		"section": "Design High-Performing Architectures",
+		"question_plain": "You have built an application that is deployed with an Elastic Load Balancer and an Auto Scaling Group. As a solutions architect, you have configured aggressive CloudWatch alarms, making your Auto Scaling Group scale in and out very quickly, renewing your fleet of EC2 instances on a daily basis. A production bug appeared two days ago, but the team cannot SSH into the instance to debug the issue due to the fact it has already been terminated by the ASG. The log files were kept on the EC2 instance. How could you solve that situation in the future ?",
+		"related_lectures": []
+	},
+	{
+		"_class": "assessment",
+		"id": 17824972,
+		"assessment_type": "multiple-choice",
+		"prompt": {
+			"answers": [
+				"<p>SQS</p>",
+				"<p>SNS</p>",
+				"<p>Kinesis</p>",
+				"<p>Lambda</p>"
+			],
+			"relatedLectureIds": "",
+			"feedbacks": [
+				"",
+				"",
+				"",
+				""
+			],
+			"question": "<p>Your company is a revolutionary IoT company, that is planning on distributing a sensor to install in people's home to measure the temperature and make adjustments to the heating system. In order to provide adjustment commands, you would like to have a streaming system that can have ordering of data based on the sensor's key, and sustain high throughput (thousands of messages per second). As a Solutions Architect, which technology do you recommend?</p>\n",
+			"explanation": "<p>SQS FIFO will not work here as they cannot sustain thousands of messages per second. SNS cannot be used for data streaming. Lambda isn't meant to retain data. Kinesis is the right answer here, with providing a partition key in our message we can guarantee ordering for a specific sensor, even if our stream is sharded</p>\n"
+		},
+		"correct_response": [
+			"c"
+		],
+		"section": "Design High-Performing Architectures",
+		"question_plain": "Your company is a revolutionary IoT company, that is planning on distributing a sensor to install in people's home to measure the temperature and make adjustments to the heating system. In order to provide adjustment commands, you would like to have a streaming system that can have ordering of data based on the sensor's key, and sustain high throughput (thousands of messages per second). As a Solutions Architect, which technology do you recommend?",
+		"related_lectures": []
+	},
+	{
+		"_class": "assessment",
+		"id": 17824974,
+		"assessment_type": "multiple-choice",
+		"prompt": {
+			"answers": [
+				"<p>EBS volumes mounted in RAID 1</p>",
+				"<p>EFS</p>",
+				"<p>Instance Store</p>",
+				"<p>EBS volumes mounted in RAID 0</p>"
+			],
+			"relatedLectureIds": "",
+			"feedbacks": [
+				"",
+				"",
+				"",
+				""
+			],
+			"question": "<p>Your company is building a music sharing platform on which users can upload their songs. As a solutions architect for the platform, you have designed an architecture that will leverage a Network Load Balancer linked to an Auto Scaling Group across multiple availability zones. You are currently running with 100 EC2 instances in that Auto Scaling Group, and they need to be able to share the storage layer for the music files. Which technology do you recommend?</p>\n",
+			"explanation": "<p>Instance Stores or EBS volumes are local disks and cannot be shared across instances. Here, we need a network file system (NFS), which is exactly what EFS is designed for.</p>\n"
+		},
+		"correct_response": [
+			"b"
+		],
+		"section": "Design High-Performing Architectures",
+		"question_plain": "Your company is building a music sharing platform on which users can upload their songs. As a solutions architect for the platform, you have designed an architecture that will leverage a Network Load Balancer linked to an Auto Scaling Group across multiple availability zones. You are currently running with 100 EC2 instances in that Auto Scaling Group, and they need to be able to share the storage layer for the music files. Which technology do you recommend?",
+		"related_lectures": []
+	},
+	{
+		"_class": "assessment",
+		"id": 17825014,
+		"assessment_type": "multiple-choice",
+		"prompt": {
+			"answers": [
+				"<p>SSE-KMS</p>",
+				"<p>SSE-S3</p>",
+				"<p>SSE-C</p>",
+				"<p>Client Side Encryption</p>"
+			],
+			"relatedLectureIds": "",
+			"feedbacks": [
+				"",
+				"",
+				"",
+				""
+			],
+			"question": "<p>Your company helps others legally sign highly confidential contracts. It has strong industry requirements around ensure the contracts, after being signed, are encrypted using the AES-256 algorithm and an encryption key they generate internally. The company is now migrating to using AWS S3 and would like you, the Solution Architect, to advise them on the encryption scheme to adopt, while keeping on using their encryption key generation mechanism. What do you recommend?</p>\n",
+			"explanation": "<p>With SSE-C, your company can still provide the encryption key but let AWS do the encryption</p>\n"
+		},
+		"correct_response": [
+			"c"
+		],
+		"section": "Design High-Performing Architectures",
+		"question_plain": "Your company helps others legally sign highly confidential contracts. It has strong industry requirements around ensure the contracts, after being signed, are encrypted using the AES-256 algorithm and an encryption key they generate internally. The company is now migrating to using AWS S3 and would like you, the Solution Architect, to advise them on the encryption scheme to adopt, while keeping on using their encryption key generation mechanism. What do you recommend?",
+		"related_lectures": []
+	},
+	{
+		"_class": "assessment",
+		"id": 17825036,
+		"assessment_type": "multiple-choice",
+		"prompt": {
+			"answers": [
+				"<p>Move the songs to Glacier</p>",
+				"<p>Leverage Storage Gateway</p>",
+				"<p>Use a CloudFront distribution</p>",
+				"<p>Move the songs to S3</p>"
+			],
+			"relatedLectureIds": "",
+			"feedbacks": [
+				"",
+				"",
+				"",
+				""
+			],
+			"question": "<p>Your company is building a music sharing platform on which users can upload their songs. As a solutions architect for the platform, you have designed an architecture that will leverage a Network Load Balancer linked to an Auto Scaling Group across multiple availability zones. The songs live on an FTP that your EC2 instances can easily access. You are currently running with 4 EC2 instances in your ASG, but when a very popular song is released, your Auto Scaling Group scales to 100 instances and you start to incur high network and compute fees. You are looking to find a way to dramatically decrease the costs without changing any of the application code, what do you recommend?</p>\n",
+			"explanation": "<p>S3 would imply changing the application code, Glacier is not applicable as the files are frequently requested, Storage Gateway isn't for distributing files to end users. CloudFront is the right answer, because we can put it in front of our ASG and leverage a Global Caching feature that will help us distribute the content reliably with dramatically reduced costs (the ASG won't need to scale as much)</p>\n"
+		},
+		"correct_response": [
+			"c"
+		],
+		"section": "Design High-Performing Architectures",
+		"question_plain": "Your company is building a music sharing platform on which users can upload their songs. As a solutions architect for the platform, you have designed an architecture that will leverage a Network Load Balancer linked to an Auto Scaling Group across multiple availability zones. The songs live on an FTP that your EC2 instances can easily access. You are currently running with 4 EC2 instances in your ASG, but when a very popular song is released, your Auto Scaling Group scales to 100 instances and you start to incur high network and compute fees. You are looking to find a way to dramatically decrease the costs without changing any of the application code, what do you recommend?",
+		"related_lectures": []
+	},
+	{
+		"_class": "assessment",
+		"id": 17824998,
+		"assessment_type": "multi-select",
+		"prompt": {
+			"answers": [
+				"<p>Disable Source / Destination check on the EC2 instance</p>",
+				"<p>Check if the security groups allows ping from the source</p>",
+				"<p>Contact AWS support to map your VPC with subnet</p>",
+				"<p>Create a secondary IGW to attach with public subnet and move the current IGW to private and write route tables</p>",
+				"<p>Check if the route table is configured with IGW</p>"
+			],
+			"relatedLectureIds": "",
+			"feedbacks": [
+				"",
+				"",
+				"",
+				"",
+				""
+			],
+			"question": "<p>You want to create a new department in your company. Being the Solutions Architect, you have created a separate VPC to get the level of isolation. You have setup the public subnet and IGW. You are still not able to ping to the EC2 instance with Elastic IP launched in this VPC. What should you do? (select two)</p>\n",
+			"explanation": "<p>After creating an IGW, make sure the route tables are updated. Additionally, ensure the security group allow the ICMP protocol for ping requests</p>\n"
+		},
+		"correct_response": [
+			"b",
+			"e"
+		],
+		"section": "Design High-Performing Architectures",
+		"question_plain": "You want to create a new department in your company. Being the Solutions Architect, you have created a separate VPC to get the level of isolation. You have setup the public subnet and IGW. You are still not able to ping to the EC2 instance with Elastic IP launched in this VPC. What should you do? (select two)",
+		"related_lectures": []
+	},
+	{
+		"_class": "assessment",
+		"id": 17824936,
+		"assessment_type": "multi-select",
+		"prompt": {
+			"answers": [
+				"<p>Embed a credential rotation logic in the AWS Lambda, retrieving them from SSM</p>",
+				"<p>Use IAM authentication from Lambda to RDS PostgreSQL</p>",
+				"<p>Restrict the RDS database security group to the Lambda's security group</p>",
+				"<p>Deploy AWS Lambda in a VPC</p>",
+				"<p>Attach an IAM role to AWS Lambda</p>"
+			],
+			"relatedLectureIds": "",
+			"feedbacks": [
+				"",
+				"",
+				"",
+				"",
+				""
+			],
+			"question": "<p>Your company offers a web portal to match developers to clients who need their help. As a Solutions Architect, you've designed the architecture of the website to follow some serverless pattern on the API side, with API Gateway and AWS Lambda. The backend is leveraging an RDS PostgreSQL database. Currently, you are using a classic username and password combination to connect the Lambda function to the RDS database. You would like to implement greater security at the authentication level, leveraging short lived credentials. What do you recommend? (select two)</p>\n",
+			"explanation": "<p>This question is very tricky, because all answers do indeed increase security. But the question is related to authentication mechanism, and as such, deploying a Lambda in a VPC or tightening security groups does not change the authentication layer. Retrieving credentials from SSM is overkill, as here IAM authentication to RDS is support, which must be achieved by attaching an IAM role the AWS Lambda function</p>\n"
+		},
+		"correct_response": [
+			"b",
+			"e"
+		],
+		"section": "Design High-Performing Architectures",
+		"question_plain": "Your company offers a web portal to match developers to clients who need their help. As a Solutions Architect, you've designed the architecture of the website to follow some serverless pattern on the API side, with API Gateway and AWS Lambda. The backend is leveraging an RDS PostgreSQL database. Currently, you are using a classic username and password combination to connect the Lambda function to the RDS database. You would like to implement greater security at the authentication level, leveraging short lived credentials. What do you recommend? (select two)",
+		"related_lectures": []
+	},
+	{
+		"_class": "assessment",
+		"id": 17824954,
+		"assessment_type": "multiple-choice",
+		"prompt": {
+			"answers": [
+				"<p>Use SSL certificates with SNI</p>",
+				"<p>Use a wildcard SSL certificate</p>",
+				"<p>Use a HTTP to HTTPS redirect</p>",
+				"<p>Change the ELB SSL Security Policy</p>"
+			],
+			"relatedLectureIds": "",
+			"feedbacks": [
+				"",
+				"",
+				"",
+				""
+			],
+			"question": "<p>Your company is evolving towards a microservice approach for their website and expose their website from the same load balancer, linked to different target groups with different URLs: checkout.mycorp.com, www.mycorp.com, mycorp.com/profile and mycorp.com/search. It would like to expose all these URLs as HTTPS endpoints for security purposes. Which Application Load Balancer feature can help with achieving this capability?</p>\n",
+			"explanation": "<p>Read more here: https://aws.amazon.com/blogs/aws/new-application-load-balancer-sni/</p>\n"
+		},
+		"correct_response": [
+			"a"
+		],
+		"section": "Design High-Performing Architectures",
+		"question_plain": "Your company is evolving towards a microservice approach for their website and expose their website from the same load balancer, linked to different target groups with different URLs: checkout.mycorp.com, www.mycorp.com, mycorp.com/profile and mycorp.com/search. It would like to expose all these URLs as HTTPS endpoints for security purposes. Which Application Load Balancer feature can help with achieving this capability?",
+		"related_lectures": []
+	},
+	{
+		"_class": "assessment",
+		"id": 17825024,
+		"assessment_type": "multiple-choice",
+		"prompt": {
+			"answers": [
+				"<p>Warm Standby</p>",
+				"<p>Pilot Light</p>",
+				"<p>Backup</p>",
+				"<p>Multi Site</p>"
+			],
+			"relatedLectureIds": "",
+			"feedbacks": [
+				"",
+				"",
+				"",
+				""
+			],
+			"question": "<p>Your company has traditionally operated with an on-premise data centre and would like to create a disaster recovery strategy that will leverage the AWS Cloud. As a Solutions Architect, you would like to ensure the critical systems are always up and running in the cloud, and to minimise costs, you would like the non critical systems to be created on demand in case of actual disaster. Which strategy is that?</p>\n",
+			"explanation": "<p>If you're interested into reading more about disaster recovery, the white paper is here: https://d1.awsstatic.com/asset-repository/products/CloudEndure/CloudEndure_Affordable_Enterprise-Grade_Disaster_Recovery_Using_AWS.pdf</p>\n"
+		},
+		"correct_response": [
+			"b"
+		],
+		"section": "Design Resilient Architectures",
+		"question_plain": "Your company has traditionally operated with an on-premise data centre and would like to create a disaster recovery strategy that will leverage the AWS Cloud. As a Solutions Architect, you would like to ensure the critical systems are always up and running in the cloud, and to minimise costs, you would like the non critical systems to be created on demand in case of actual disaster. Which strategy is that?",
+		"related_lectures": []
+	},
+	{
+		"_class": "assessment",
+		"id": 17824924,
+		"assessment_type": "multiple-choice",
+		"prompt": {
+			"answers": [
+				"<p>Glue</p>",
+				"<p>RDS</p>",
+				"<p>Lambda</p>",
+				"<p>Kinesis Streams</p>",
+				"<p>EC2</p>"
+			],
+			"relatedLectureIds": "",
+			"feedbacks": [
+				"",
+				"",
+				"",
+				"",
+				""
+			],
+			"question": "<p>You have a daily job running on top of your RDS database, running at 7 am. It processes shipping orders for the past day, and usually you get around 2000 rows that need to be processed sequentially in one batch based on a Python script. The processing of each row takes about 3 seconds. What platform do you recommend to run this batch job?</p>\n",
+			"explanation": "<p>Lambda would time out after 15 minutes (2000*3=6000 seconds = 100 minutes). Glue is for performing ETL, but cannot run custom Python scripts. Kinesis Streams is for real time data (here we are in a batch setup), RDS could be used to run SQL queries on the data, but no Python script. The correct answer is EC2</p>\n"
+		},
+		"correct_response": [
+			"e"
+		],
+		"section": "Design High-Performing Architectures",
+		"question_plain": "You have a daily job running on top of your RDS database, running at 7 am. It processes shipping orders for the past day, and usually you get around 2000 rows that need to be processed sequentially in one batch based on a Python script. The processing of each row takes about 3 seconds. What platform do you recommend to run this batch job?",
+		"related_lectures": []
+	},
+	{
+		"_class": "assessment",
+		"id": 17825006,
+		"assessment_type": "multi-select",
+		"prompt": {
+			"answers": [
+				"<p>Create a LifeCycle Policy to transition objects to S3 One Zone IA using a prefix after 45 days</p>",
+				"<p>Create a LifeCycle Policy to transition objects to S3 IA using a prefix after 45 days</p>",
+				"<p>Create a LifeCycle Policy to transition all objects to Glacier after 180 days</p>",
+				"<p>Create a LifeCycle Policy to transition all objects to S3 IA after 45 days</p>",
+				"<p>Create a LifeCycle Policy to transition objects to Glacier using a prefix after 180 days</p>"
+			],
+			"relatedLectureIds": "",
+			"feedbacks": [
+				"",
+				"",
+				"",
+				"",
+				""
+			],
+			"question": "<p>You have an S3 bucket that contains files in different sub folders, for example <code>s3://my-bucket/images</code> and <code>s3://my-bucket/thumbails</code>. When an image is first uploaded to your application, it is often requested, whereas after 45 days, analytics prove that files are on average rarely requested, but the thumbnails still are. After 180 days, you would like to archive the files and the thumbnails. Overall you would like to remain highly available to prevent disasters happening against a whole AZ.How can you implement an efficient cost strategy for your S3 bucket?(select two)</p>\n",
+			"explanation": "<p>Here prefixes must be used in order not to transfer the wrong objects after 45 days, whereas after 180 days all the objects can be transferred to Glacier (no prefixes needed). Finally, S3 One Zone IA would not achieve the necessary availability in case an AZ goes down.</p>\n"
+		},
+		"correct_response": [
+			"b",
+			"c"
+		],
+		"section": "Design Cost-Optimized Architectures",
+		"question_plain": "You have an S3 bucket that contains files in different sub folders, for example s3://my-bucket/images and s3://my-bucket/thumbails. When an image is first uploaded to your application, it is often requested, whereas after 45 days, analytics prove that files are on average rarely requested, but the thumbnails still are. After 180 days, you would like to archive the files and the thumbnails. Overall you would like to remain highly available to prevent disasters happening against a whole AZ.How can you implement an efficient cost strategy for your S3 bucket?(select two)",
+		"related_lectures": []
+	},
+	{
+		"_class": "assessment",
+		"id": 17825018,
+		"assessment_type": "multiple-choice",
+		"prompt": {
+			"answers": [
+				"<p>Add Aurora Read Replicas</p>",
+				"<p>Enable API Gateway Caching</p>",
+				"<p>Enable AWS Lambda In Memory Caching</p>",
+				"<p>Switch to using an Application Load Balancer</p>"
+			],
+			"relatedLectureIds": "",
+			"feedbacks": [
+				"",
+				"",
+				"",
+				""
+			],
+			"question": "<p>A new REST API you have developed is leveraging the API Gateway, AWS Lambda and an Aurora database. Most of the workload is read heavy to the nature of the website. The data rarely changes and it is acceptable to serve our users outdated data for 24 hours. Recently, the website has been experiencing high load and the costs incurred on the Aurora database have been very high. How can you easily reduce the costs while improving performance, with minimal changes?</p>\n",
+			"explanation": "<p>Adding Aurora Read Replicas would greatly increase the cost, switching to a Load Balancer would not improve the problems, and AWS Lambda has no native in memory caching capability. Here, using API Gateway Caching feature is the answer, as we can accept to serve stale data to our users.</p>\n"
+		},
+		"correct_response": [
+			"b"
+		],
+		"section": "Design Cost-Optimized Architectures",
+		"question_plain": "A new REST API you have developed is leveraging the API Gateway, AWS Lambda and an Aurora database. Most of the workload is read heavy to the nature of the website. The data rarely changes and it is acceptable to serve our users outdated data for 24 hours. Recently, the website has been experiencing high load and the costs incurred on the Aurora database have been very high. How can you easily reduce the costs while improving performance, with minimal changes?",
+		"related_lectures": []
+	},
+	{
+		"_class": "assessment",
+		"id": 17824968,
+		"assessment_type": "multiple-choice",
+		"prompt": {
+			"answers": [
+				"<p>Use a Direct Connect Gateway</p>",
+				"<p>Use VPC Peering</p>",
+				"<p>Use an Internet Gateway</p>",
+				"<p>Use a NAT Gateway</p>"
+			],
+			"relatedLectureIds": "",
+			"feedbacks": [
+				"",
+				"",
+				"",
+				""
+			],
+			"question": "<p>When you launched as a short term rental company, you had 5 employees all working on the same AWS cloud account. These employees deployed their applications for various purposes, including billing, operations, finance, etc. Each of these employees have been operating in their own VPC. Now there is a need to connect these VPC so that the applications can communicate with each other. What do you recommend on doing?</p>\n",
+			"explanation": "<p>In order to connect VPC together, your best option is to use VPC peering.</p>\n"
+		},
+		"correct_response": [
+			"b"
+		],
+		"section": "Design Resilient Architectures",
+		"question_plain": "When you launched as a short term rental company, you had 5 employees all working on the same AWS cloud account. These employees deployed their applications for various purposes, including billing, operations, finance, etc. Each of these employees have been operating in their own VPC. Now there is a need to connect these VPC so that the applications can communicate with each other. What do you recommend on doing?",
+		"related_lectures": []
+	},
+	{
+		"_class": "assessment",
+		"id": 17824956,
+		"assessment_type": "multi-select",
+		"prompt": {
+			"answers": [
+				"<p>SNS</p>",
+				"<p>Spot Instances</p>",
+				"<p>SQS</p>",
+				"<p>Reserved Instances</p>",
+				"<p>On Demand Instances</p>"
+			],
+			"relatedLectureIds": "",
+			"feedbacks": [
+				"",
+				"",
+				"",
+				"",
+				""
+			],
+			"question": "<p>You are a solutions architect for a photo processing company that has a proprietary algorithm to compress an image without losing in quality. Due to the quality of your algorithm, your clients are willing to wait some time before getting their compressed images back. Due to the high volume of requests you can get at once, you also want to be able to process these jobs asynchronously and scale quickly. Additionally, the job can be retried in case of failures. Which combination of choices do you recommend to minimise cost and comply with the requirements? (select two)</p>\n",
+			"explanation": "<p>SQS will allow you to buffer the image compression requests and process them asynchronously. It also has a direct built-in mechanism for retries and scales seamlessly. To process these jobs, due to the unpredictable nature of their volume, and the desire to save on costs, Spot Instances are recommended.</p>\n"
+		},
+		"correct_response": [
+			"b",
+			"c"
+		],
+		"section": "Design Cost-Optimized Architectures",
+		"question_plain": "You are a solutions architect for a photo processing company that has a proprietary algorithm to compress an image without losing in quality. Due to the quality of your algorithm, your clients are willing to wait some time before getting their compressed images back. Due to the high volume of requests you can get at once, you also want to be able to process these jobs asynchronously and scale quickly. Additionally, the job can be retried in case of failures. Which combination of choices do you recommend to minimise cost and comply with the requirements? (select two)",
+		"related_lectures": []
+	},
+	{
+		"_class": "assessment",
+		"id": 17824926,
+		"assessment_type": "multiple-choice",
+		"prompt": {
+			"answers": [
+				"<p>Store your recommendations in a custom Trusted Advisor rule</p>",
+				"<p>Create a Lambda function which sends emails when it finds misconfigured RDS databases</p>",
+				"<p>Use CloudFormation to manage RDS databases</p>",
+				"<p>Attach an IAM policy to interns preventing them from creating an RDS database</p>"
+			],
+			"relatedLectureIds": "",
+			"feedbacks": [
+				"",
+				"",
+				"",
+				""
+			],
+			"question": "<p>You started a new job as a Solutions Architect in a big company that has both AWS experts and people learning AWS. You would like to have everyone empowered into building and configured great architectures without making manual mistakes. Recently, an intern mis-configured a newly created RDS database by forgetting to tag it which resulted in a production outage. How can you make sure to pass on the best practices reliably to all your AWS users?</p>\n",
+			"explanation": "<p>CloudFormation allows you to keep your infrastructure as code and re-use the best practices around your company for configuration parameters.</p>\n"
+		},
+		"correct_response": [
+			"c"
+		],
+		"section": "Design High-Performing Architectures",
+		"question_plain": "You started a new job as a Solutions Architect in a big company that has both AWS experts and people learning AWS. You would like to have everyone empowered into building and configured great architectures without making manual mistakes. Recently, an intern mis-configured a newly created RDS database by forgetting to tag it which resulted in a production outage. How can you make sure to pass on the best practices reliably to all your AWS users?",
+		"related_lectures": []
+	},
+	{
+		"_class": "assessment",
+		"id": 17824944,
+		"assessment_type": "multi-select",
+		"prompt": {
+			"answers": [
+				"<p>Use Direct Connect as a primary connection</p>",
+				"<p>Use Site to Site VPN as a primary connection</p>",
+				"<p>Use Egress Only Gateway as a backup connection</p>",
+				"<p>Use Site to Site VPN as a backup connection</p>",
+				"<p>Use Direct Connect as a backup connection</p>"
+			],
+			"relatedLectureIds": "",
+			"feedbacks": [
+				"",
+				"",
+				"",
+				"",
+				""
+			],
+			"question": "<p>You are a long-time Solutions Architect for your company that has been traditionally operating with an on-premise data centre. As part of the new strategy from the CTO, you are adopting a hybrid cloud infrastructure to leverage some AWS services such as S3. Yet, your company needs strong security requirements to have the connection between your on-premise data centre and AWS to be private. In case of failures though, it needs to guarantee uptime over security, and is willing to use the public internet. What do you recommend? (select two)</p>\n",
+			"explanation": "<p>Direct Connect as a primary connection guarantees great performance and security (as the connection is private). Using Direct Connect as a backup solution would work but probably carries a risk it would fail as well. Therefore as we don't mind going over the public internet (which is reliable, but less secure as connections are going over the public route), we should use a Site to Site VPN as a backup connection.</p>\n"
+		},
+		"correct_response": [
+			"a",
+			"d"
+		],
+		"section": "Design Secure Applications and Architectures",
+		"question_plain": "You are a long-time Solutions Architect for your company that has been traditionally operating with an on-premise data centre. As part of the new strategy from the CTO, you are adopting a hybrid cloud infrastructure to leverage some AWS services such as S3. Yet, your company needs strong security requirements to have the connection between your on-premise data centre and AWS to be private. In case of failures though, it needs to guarantee uptime over security, and is willing to use the public internet. What do you recommend? (select two)",
+		"related_lectures": []
+	},
+	{
+		"_class": "assessment",
+		"id": 17825046,
+		"assessment_type": "multi-select",
+		"prompt": {
+			"answers": [
+				"<p>Set the minimum capacity to 1</p>",
+				"<p>Set the minimum capacity to 3</p>",
+				"<p>Set the minimum capacity to 2</p>",
+				"<p>Use Dedicated hosts for the minimum capacity</p>",
+				"<p>Reserve Instances for the minimum capacity</p>"
+			],
+			"relatedLectureIds": "",
+			"feedbacks": [
+				"",
+				"",
+				"",
+				"",
+				""
+			],
+			"question": "<p>As an e-sport tournament hosting company, you have servers that need to scale and be highly available. Therefore you have deployed an ELB with an ASG across 3 AZ. When e-sport tournaments happen, your servers need to scale quickly, but when no tournaments happen, your servers are idle. As a general rule, you would like to always be highly available, have the capacity to scale and optimise your costs. What do you recommend? (select two)</p>\n",
+			"explanation": "<p>Here, even though our ASG is deployed across 3 AZ, the minimum capacity to be highly available is 2. Finally, we can save costs by reserving these two instances as we know they'll be up and running at any time.</p>\n"
+		},
+		"correct_response": [
+			"c",
+			"e"
+		],
+		"section": "Design Cost-Optimized Architectures",
+		"question_plain": "As an e-sport tournament hosting company, you have servers that need to scale and be highly available. Therefore you have deployed an ELB with an ASG across 3 AZ. When e-sport tournaments happen, your servers need to scale quickly, but when no tournaments happen, your servers are idle. As a general rule, you would like to always be highly available, have the capacity to scale and optimise your costs. What do you recommend? (select two)",
+		"related_lectures": []
+	},
+	{
+		"_class": "assessment",
+		"id": 17824970,
+		"assessment_type": "multiple-choice",
+		"prompt": {
+			"answers": [
+				"<p>RDS</p>",
+				"<p>ElastiCache</p>",
+				"<p>Neptune</p>",
+				"<p>S3</p>"
+			],
+			"relatedLectureIds": "",
+			"feedbacks": [
+				"",
+				"",
+				"",
+				""
+			],
+			"question": "<p>Your company has deployed an application that will perform a lot of overwrites and deletes of data and requires the latest information to be available anytime the data is read. As a Solutions Architect, which database technology do you recommend?</p>\n",
+			"explanation": "<p>S3 does not work as overwrites are eventually consistent so the latest data will not always be read. Neptune is a graph database so it's not a good fit, ElastiCache could work but it's a better fit as a caching technology to enhance reads. Here, the best fit is RDS.</p>\n"
+		},
+		"correct_response": [
+			"a"
+		],
+		"section": "Design High-Performing Architectures",
+		"question_plain": "Your company has deployed an application that will perform a lot of overwrites and deletes of data and requires the latest information to be available anytime the data is read. As a Solutions Architect, which database technology do you recommend?",
+		"related_lectures": []
+	},
+	{
+		"_class": "assessment",
+		"id": 17824976,
+		"assessment_type": "multiple-choice",
+		"prompt": {
+			"answers": [
+				"<p>Amazon MQ</p>",
+				"<p>SQS</p>",
+				"<p>SNS</p>",
+				"<p>Kinesis</p>"
+			],
+			"relatedLectureIds": "",
+			"feedbacks": [
+				"",
+				"",
+				"",
+				""
+			],
+			"question": "<p>You have many micro services running on-premise and they currently communicate using a message broker that supports the MQTT protocol. You would like to migrate these applications and the message broker to the cloud without changing the application logic. Which technology allows you to get a managed message broker that supports the MQTT protocol?</p>\n",
+			"explanation": "<p>SNS, SQS and Kinesis are AWS' proprietary technologies and do not come with MQTT compatibility. Here the only possible answer is Amazon MQ</p>\n"
+		},
+		"correct_response": [
+			"a"
+		],
+		"section": "Design High-Performing Architectures",
+		"question_plain": "You have many micro services running on-premise and they currently communicate using a message broker that supports the MQTT protocol. You would like to migrate these applications and the message broker to the cloud without changing the application logic. Which technology allows you to get a managed message broker that supports the MQTT protocol?",
+		"related_lectures": []
+	},
+	{
+		"_class": "assessment",
+		"id": 17824952,
+		"assessment_type": "multiple-choice",
+		"prompt": {
+			"answers": [
+				"<p>Add a rule to authorize the security group of the ALB</p>",
+				"<p>Add a rule to authorize the CIDR <code>10.0.4.0/17</code></p>",
+				"<p>Add a rule to authorize the security group of the ASG</p>",
+				"<p>Add a rule to authorize the CIDR <code>10.0.1.0/18</code></p>"
+			],
+			"relatedLectureIds": "",
+			"feedbacks": [
+				"",
+				"",
+				"",
+				""
+			],
+			"question": "<p>A developer in your company has setup a classic 2 tier architecture comprised of an Application Load Balancer and an Auto Scaling group managing a fleet of EC2 instances. The ALB is deployed in a subnet of size <code>10.0.1.0/18</code> and the ASG is deployed in subnet of size <code>10.0.4.0/17</code>. As a Solutions Architect, you would like to adhere to the security pillar of the well architected framework. How do you configure the security group of the EC2 instances to only allow traffic coming from the ALB?</p>\n",
+			"explanation": "<p>Adding the entire CIDR of the ALB would work, but wouldn't guarantee that only the ALB can access the EC2 instances that are part of the ASG. Here, the right solution is to add a rule on the ASG security group to allow incoming traffic from the security group configured for the ALB.</p>\n"
+		},
+		"correct_response": [
+			"a"
+		],
+		"section": "Design Secure Applications and Architectures",
+		"question_plain": "A developer in your company has setup a classic 2 tier architecture comprised of an Application Load Balancer and an Auto Scaling group managing a fleet of EC2 instances. The ALB is deployed in a subnet of size 10.0.1.0/18 and the ASG is deployed in subnet of size 10.0.4.0/17. As a Solutions Architect, you would like to adhere to the security pillar of the well architected framework. How do you configure the security group of the EC2 instances to only allow traffic coming from the ALB?",
+		"related_lectures": []
+	},
+	{
+		"_class": "assessment",
+		"id": 17825038,
+		"assessment_type": "multiple-choice",
+		"prompt": {
+			"answers": [
+				"<p>Use a Route53 Multi Value record</p>",
+				"<p>Use a CloudFront distribution in front of your website</p>",
+				"<p>Use an Auto Scaling Group</p>",
+				"<p>Deploy the application servers to S3</p>"
+			],
+			"relatedLectureIds": "",
+			"feedbacks": [
+				"",
+				"",
+				"",
+				""
+			],
+			"question": "<p>One of your application is about to get a lot more traffic as you are running a 1 day flash sale. You have estimated the web traffic to be 10x. The content of your website is highly dynamic and changes very often. What do you recommend doing as a Solutions Architect to make sure your infrastructure scales for that day?</p>\n",
+			"explanation": "<p>CloudFront is not a good solution here as the content is highly dynamic, and CloudFront will cache things. Dynamic applications cannot be deployed to S3, and Route53 does not help in scaling your application. ASG is the correct answer here.</p>\n"
+		},
+		"correct_response": [
+			"c"
+		],
+		"section": "Design High-Performing Architectures",
+		"question_plain": "One of your application is about to get a lot more traffic as you are running a 1 day flash sale. You have estimated the web traffic to be 10x. The content of your website is highly dynamic and changes very often. What do you recommend doing as a Solutions Architect to make sure your infrastructure scales for that day?",
+		"related_lectures": []
+	},
+	{
+		"_class": "assessment",
+		"id": 17824938,
+		"assessment_type": "multiple-choice",
+		"prompt": {
+			"answers": [
+				"<p>Use ElastiCache</p>",
+				"<p>Use DynamoDB Streams</p>",
+				"<p>Use DynamoDB DAX</p>",
+				"<p>Use DynamoDB Global Tables</p>"
+			],
+			"relatedLectureIds": "",
+			"feedbacks": [
+				"",
+				"",
+				"",
+				""
+			],
+			"question": "<p>Your company offers a web portal to match developers to clients who need their help. As a Solutions Architect, you've designed the architecture of the website to be a fully serverless pattern on the API side, with API Gateway &amp; AWS Lambda. The backend is leveraging a DynamoDB table. Some of your developers on the portal are highly popular, and therefore DynamoDB has increased the RCU, and you are experiencing a hot partition problem. What can you do to improve the performance of DynamoDB and eliminate the hot key problem?</p>\n",
+			"explanation": "<p>DAX will be transparent and won't require an application refactoring, and will cache the \"hot keys\". ElastiCache could also be a solution, but it will require a lot of refactoring work on the AWS Lambda side.</p>\n"
+		},
+		"correct_response": [
+			"c"
+		],
+		"section": "Design High-Performing Architectures",
+		"question_plain": "Your company offers a web portal to match developers to clients who need their help. As a Solutions Architect, you've designed the architecture of the website to be a fully serverless pattern on the API side, with API Gateway &amp; AWS Lambda. The backend is leveraging a DynamoDB table. Some of your developers on the portal are highly popular, and therefore DynamoDB has increased the RCU, and you are experiencing a hot partition problem. What can you do to improve the performance of DynamoDB and eliminate the hot key problem?",
+		"related_lectures": []
+	},
+	{
+		"_class": "assessment",
+		"id": 17825004,
+		"assessment_type": "multiple-choice",
+		"prompt": {
+			"answers": [
+				"<p>DynamoDB DAX + API Gateway</p>",
+				"<p>CloudWatch Events + Lambda</p>",
+				"<p>SQS + Lambda</p>",
+				"<p>DynamoDB Streams + Lambda</p>"
+			],
+			"relatedLectureIds": "",
+			"feedbacks": [
+				"",
+				"",
+				"",
+				""
+			],
+			"question": "<p>Your company offers a web portal to match developers to clients who need their help. As a Solutions Architect, you've designed the architecture of the website to be a fully serverless pattern on the API side, with API Gateway &amp; AWS Lambda. The backend is leveraging a DynamoDB table. You would like to automatically congratulate your developers on important milestones, such as for example their first paid contract. All the contracts are stored in DynamoDB. What feature can you use to it simply, with no delay?</p>\n",
+			"explanation": "<p>DynamoDB Streams will contain a stream of all the changes that happen to a DynamoDB table. It can be chained with a Lambda function that will be triggered to react to these changes, one of which being a developer's milestone. DAX is a caching layer and API Gateway used to deploy APIs at scale so this won't help. SQS and Lambda could also work, but one would need to write extra logic to send messages to SQS, whereas our data already lives on DynamoDB so DynamoDB Streams is a much better choice.</p>\n"
+		},
+		"correct_response": [
+			"d"
+		],
+		"section": "Design High-Performing Architectures",
+		"question_plain": "Your company offers a web portal to match developers to clients who need their help. As a Solutions Architect, you've designed the architecture of the website to be a fully serverless pattern on the API side, with API Gateway &amp; AWS Lambda. The backend is leveraging a DynamoDB table. You would like to automatically congratulate your developers on important milestones, such as for example their first paid contract. All the contracts are stored in DynamoDB. What feature can you use to it simply, with no delay?",
+		"related_lectures": []
+	},
+	{
+		"_class": "assessment",
+		"id": 17824950,
+		"assessment_type": "multi-select",
+		"prompt": {
+			"answers": [
+				"<p>Migrate the Redshift underlying storage to S3 IA</p>",
+				"<p>Create a smaller Redshift Cluster with the cold data</p>",
+				"<p>Move the data to S3 Glacier after 30 days</p>",
+				"<p>Move the data to S3 IA after 30 days</p>",
+				"<p>Analyze the cold data with Athena</p>"
+			],
+			"relatedLectureIds": "",
+			"feedbacks": [
+				"",
+				"",
+				"",
+				"",
+				""
+			],
+			"question": "<p>Your company has created a data warehouse using Redshift that is used to analyze data from S3. From the usage pattern, you have detected that after 30 days, the data is rarely queried in Redshift and it's not \"hot data\" anymore. You would like to preserve the SQL querying capability on your data and gets the queries started immediately but adopt a pricing model allowing you to save the maximum amount of cost on Redshift. What do you recommend? (select two)</p>\n",
+			"explanation": "<p>Creating a smaller cluster with the cold data would not decrease the storage cost of Redshift, which will increase as we keep on creating data. Moving the data to S3 glacier will prevent us from being able to query it. Redshift's internal storage does not have \"tiers\". Therefore, we should migrate the data to S3 IA and use Athena (serverless SQL query engine on top of S3) to analyze the cold data.</p>\n"
+		},
+		"correct_response": [
+			"d",
+			"e"
+		],
+		"section": "Design Cost-Optimized Architectures",
+		"question_plain": "Your company has created a data warehouse using Redshift that is used to analyze data from S3. From the usage pattern, you have detected that after 30 days, the data is rarely queried in Redshift and it's not \"hot data\" anymore. You would like to preserve the SQL querying capability on your data and gets the queries started immediately but adopt a pricing model allowing you to save the maximum amount of cost on Redshift. What do you recommend? (select two)",
+		"related_lectures": []
+	},
+	{
+		"_class": "assessment",
+		"id": 17824988,
+		"assessment_type": "multiple-choice",
+		"prompt": {
+			"answers": [
+				"<p>Classic Load Balancer + dynamic port mapping</p>",
+				"<p>Application Load Balancer + dynamic port mapping</p>",
+				"<p>Network Load Balancer + dynamic port mapping</p>",
+				"<p>Application Load Balancer + Reverse Proxy running as a Docker daemon on each ECS host</p>"
+			],
+			"relatedLectureIds": "",
+			"feedbacks": [
+				"",
+				"",
+				"",
+				""
+			],
+			"question": "<p>Your company is evolving towards a microservice approach for their website and expose their website from the same load balancer, linked to different target groups with different URLs: checkout.mycorp.com, www.mycorp.com, mycorp.com/profile and mycorp.com/search. It would like to use ECS in the backend to manage these micro-services and possibly host the same container of the same application multiple times on the same EC2 instance. Which feature can help you achieve that with minimal maintenance?</p>\n",
+			"explanation": "<p>Dynamic Port Mapping is available for the Application Load Balancer. A reverse proxy solution would work but would be too much work to manage. Here the ALB has a feature that provides a direct dynamic port mapping feature and integration with the ECS service so we will leverage that. Read more here: https://aws.amazon.com/premiumsupport/knowledge-center/dynamic-port-mapping-ecs/.</p>\n"
+		},
+		"correct_response": [
+			"b"
+		],
+		"section": "Design Resilient Architectures",
+		"question_plain": "Your company is evolving towards a microservice approach for their website and expose their website from the same load balancer, linked to different target groups with different URLs: checkout.mycorp.com, www.mycorp.com, mycorp.com/profile and mycorp.com/search. It would like to use ECS in the backend to manage these micro-services and possibly host the same container of the same application multiple times on the same EC2 instance. Which feature can help you achieve that with minimal maintenance?",
+		"related_lectures": []
+	},
+	{
+		"_class": "assessment",
+		"id": 17825022,
+		"assessment_type": "multiple-choice",
+		"prompt": {
+			"answers": [
+				"<p>Redshift</p>",
+				"<p>Glue</p>",
+				"<p>EMR</p>",
+				"<p>Athena</p>"
+			],
+			"relatedLectureIds": "",
+			"feedbacks": [
+				"",
+				"",
+				"",
+				""
+			],
+			"question": "<p>You would like to perform a daily big data analysis leveraging a Spark job you have written for that purpose. The big data analysis should read the data from S3 and output it back into S3, to be sent back to your customers. Which technology do you recommend to run the Big Data analysis?</p>\n",
+			"explanation": "<p>Athena is serverless SQL, Redshift is SQL, Glue is for ETL, not Big Data Analysis. EMR is for launching Hadoop / Spark clusters and is the right answer here</p>\n"
+		},
+		"correct_response": [
+			"c"
+		],
+		"section": "Design High-Performing Architectures",
+		"question_plain": "You would like to perform a daily big data analysis leveraging a Spark job you have written for that purpose. The big data analysis should read the data from S3 and output it back into S3, to be sent back to your customers. Which technology do you recommend to run the Big Data analysis?",
+		"related_lectures": []
+	},
+	{
+		"_class": "assessment",
+		"id": 17824966,
+		"assessment_type": "multiple-choice",
+		"prompt": {
+			"answers": [
+				"<p>Update the S3 bucket policy</p>",
+				"<p>Create a group, attach the policy to the group and place the users in the group</p>",
+				"<p>Create a policy and assign it manually to the 50 users</p>",
+				"<p>Create an MFA user with read / write access and link 50 IAM with MFA</p>"
+			],
+			"relatedLectureIds": "",
+			"feedbacks": [
+				"",
+				"",
+				"",
+				""
+			],
+			"question": "<p>Your company has around 200 users and each of them is assigned an IAM user. Currently they all have read access to a bucket. You want 50 among them to have write and read access to the buckets. How can you provide these users access in the best way?</p>\n",
+			"explanation": "<p>Creating a policy and assigning it manually to users would work but would be hard to scale and manage. MFA won't help here. Updating the S3 bucket policy could work but would not scale, as the size of the S3 bucket policy is limited. Here creating a group, assigning users to that group and attaching policies to that group is the best way.</p>\n"
+		},
+		"correct_response": [
+			"b"
+		],
+		"section": "Design Secure Applications and Architectures",
+		"question_plain": "Your company has around 200 users and each of them is assigned an IAM user. Currently they all have read access to a bucket. You want 50 among them to have write and read access to the buckets. How can you provide these users access in the best way?",
+		"related_lectures": []
+	},
+	{
+		"_class": "assessment",
+		"id": 17824918,
+		"assessment_type": "multiple-choice",
+		"prompt": {
+			"answers": [
+				"<p>DynamoDB DAX</p>",
+				"<p>Kinesis</p>",
+				"<p>SNS</p>",
+				"<p>SQS</p>"
+			],
+			"relatedLectureIds": "",
+			"feedbacks": [
+				"",
+				"",
+				"",
+				""
+			],
+			"question": "<p>An application deployed to Elastic Beanstalk uses Amazon DynamoDB as the data layer. Recently, your database has seen a spike in increase writes, and your users often get errors from your application saying the write wasn't successful due to a throughput provisioned exception. You would like to prevent your users from seeing these errors while guaranteeing them that the data they're trying to write to the backend will be written. As such, you've decided to de-couple the application layer from the database layer and dedicate a worker process to writing the data to DynamoDB. Which middleware do you recommend on using that can scale infinitely and valid these requirements?</p>\n",
+			"explanation": "<p>Kinesis cannot scale infinitely and we may have the same throughput issues. SNS won't keep our data if it cannot be delivered, and DAX is used for caching reads, not to help with writes. Here, using SQS as a middleware will help us sustain the write throughput during write peaks.</p>\n"
+		},
+		"correct_response": [
+			"d"
+		],
+		"section": "Design High-Performing Architectures",
+		"question_plain": "An application deployed to Elastic Beanstalk uses Amazon DynamoDB as the data layer. Recently, your database has seen a spike in increase writes, and your users often get errors from your application saying the write wasn't successful due to a throughput provisioned exception. You would like to prevent your users from seeing these errors while guaranteeing them that the data they're trying to write to the backend will be written. As such, you've decided to de-couple the application layer from the database layer and dedicate a worker process to writing the data to DynamoDB. Which middleware do you recommend on using that can scale infinitely and valid these requirements?",
+		"related_lectures": []
+	},
+	{
+		"_class": "assessment",
+		"id": 17825044,
+		"assessment_type": "multiple-choice",
+		"prompt": {
+			"answers": [
+				"<p>SSE-S3</p>",
+				"<p>SSE-KMS</p>",
+				"<p>SSE-C</p>",
+				"<p>Client Side Encryption</p>"
+			],
+			"relatedLectureIds": "",
+			"feedbacks": [
+				"",
+				"",
+				"",
+				""
+			],
+			"question": "<p>Your company helps others legally sign highly confidential contracts. It has strong industry requirements around ensure the contracts, after being signed, are encrypted using their proprietary algorithm. The company is now migrating to using AWS S3 and would like you, the Solution Architect, to advise them on the encryption scheme to adopt. What do you recommend?</p>\n",
+			"explanation": "<p>Here, because the company has its own proprietary encryption algorithm, you have to leverage client side encryption.</p>\n"
+		},
+		"correct_response": [
+			"d"
+		],
+		"section": "Design Secure Applications and Architectures",
+		"question_plain": "Your company helps others legally sign highly confidential contracts. It has strong industry requirements around ensure the contracts, after being signed, are encrypted using their proprietary algorithm. The company is now migrating to using AWS S3 and would like you, the Solution Architect, to advise them on the encryption scheme to adopt. What do you recommend?",
+		"related_lectures": []
+	},
+	{
+		"_class": "assessment",
+		"id": 17824984,
+		"assessment_type": "multiple-choice",
+		"prompt": {
+			"answers": [
+				"<p>The AWS Lambda function is running out of memory</p>",
+				"<p>The AWS Lambda function chosen runtime is wrong</p>",
+				"<p>The AWS Lambda function is timing out</p>",
+				"<p>The AWS Lambda function is missing IAM permissions</p>"
+			],
+			"relatedLectureIds": "",
+			"feedbacks": [
+				"",
+				"",
+				"",
+				""
+			],
+			"question": "<p>You are using AWS Lambda to perform a long big data analysis that on your computers, lasts on average 30 minutes. The functions pulls data from S3, processes it and then places it back into AWS Glacier. When you deployed your AWS Lambda function, you have seen an issue where after 15 minutes, the Lambda function fails while still processing the data. What is the root cause of the issue?</p>\n",
+			"explanation": "<p>AWS Lambda functions time out after 15 minutes, and are not usually meant for long running jobs.</p>\n"
+		},
+		"correct_response": [
+			"c"
+		],
+		"section": "Design Secure Applications and Architectures",
+		"question_plain": "You are using AWS Lambda to perform a long big data analysis that on your computers, lasts on average 30 minutes. The functions pulls data from S3, processes it and then places it back into AWS Glacier. When you deployed your AWS Lambda function, you have seen an issue where after 15 minutes, the Lambda function fails while still processing the data. What is the root cause of the issue?",
+		"related_lectures": []
+	},
+	{
+		"_class": "assessment",
+		"id": 17824960,
+		"assessment_type": "multi-select",
+		"prompt": {
+			"answers": [
+				"<p>Use DynamoDB triggers to generate the URL</p>",
+				"<p>Use AWS Lambda to generate the URL</p>",
+				"<p>Generate an S3 pre-signed URL</p>",
+				"<p>Generate a CloudFront Signed URL</p>",
+				"<p>Use API Gateway to generate the URL</p>"
+			],
+			"relatedLectureIds": "",
+			"feedbacks": [
+				"",
+				"",
+				"",
+				"",
+				""
+			],
+			"question": "<p>Your company is building a video streaming service accessible to users who have paid an ongoing subscription. The users who have paid their subscription have their data in DynamoDB. You would like to expose the users to a Serverless architecture allowing them to request the video files who sit in S3 and are distributed by CloudFront, protected by an OAI. What do you recommend? (select two)</p>\n",
+			"explanation": "<p>Generating S3 pre-signed URLs would bypass CloudFront, therefore we should use CloudFront signed URL. To generate that URL we must code, and Lambda is the perfect tool for running that code on the fly. DynamoDB triggers or API Gateway as services cannot be used to generate these pre-signed URLs.</p>\n"
+		},
+		"correct_response": [
+			"b",
+			"d"
+		],
+		"section": "Design Secure Applications and Architectures",
+		"question_plain": "Your company is building a video streaming service accessible to users who have paid an ongoing subscription. The users who have paid their subscription have their data in DynamoDB. You would like to expose the users to a Serverless architecture allowing them to request the video files who sit in S3 and are distributed by CloudFront, protected by an OAI. What do you recommend? (select two)",
+		"related_lectures": []
+	},
+	{
+		"_class": "assessment",
+		"id": 17824986,
+		"assessment_type": "multiple-choice",
+		"prompt": {
+			"answers": [
+				"<p>Create a bucket policy to only authorize the IAM role attached to the CloudFront distribution</p>",
+				"<p>Update the S3 bucket security groups to only allow traffic from the CloudFront security group</p>",
+				"<p>Make the S3 bucket public</p>",
+				"<p>Create an OAI and update the S3 Bucket Policy</p>"
+			],
+			"relatedLectureIds": "",
+			"feedbacks": [
+				"",
+				"",
+				"",
+				""
+			],
+			"question": "<p>As a Solutions Architect, you would like to completely secure the communications between your CloudFront distribution and your S3 bucket which contains the static files needed to display your website. You would like your users to only be able to access your S3 bucket through CloudFront, and not directly to S3. What do you recommend?</p>\n",
+			"explanation": "<p>Don't make the S3 bucket public. You cannot attach IAM roles to the CloudFront distribution. S3 buckets don't have security groups. Here you need to use an OAI. Read more here: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-restricting-access-to-s3.html</p>\n"
+		},
+		"correct_response": [
+			"d"
+		],
+		"section": "Design Secure Applications and Architectures",
+		"question_plain": "As a Solutions Architect, you would like to completely secure the communications between your CloudFront distribution and your S3 bucket which contains the static files needed to display your website. You would like your users to only be able to access your S3 bucket through CloudFront, and not directly to S3. What do you recommend?",
+		"related_lectures": []
+	},
+	{
+		"_class": "assessment",
+		"id": 17824920,
+		"assessment_type": "multiple-choice",
+		"prompt": {
+			"answers": [
+				"<p>Stop the CloudWatch agent to improve performance</p>",
+				"<p>Convert the gp2 volume to an io1</p>",
+				"<p>Increase the IOPS on the gp2 volume</p>",
+				"<p>Convert the EC2 instance to an i3.4xlarge</p>"
+			],
+			"relatedLectureIds": "",
+			"feedbacks": [
+				"",
+				"",
+				"",
+				""
+			],
+			"question": "<p>As a Solutions Architect, you have designed running a database on a single EC2 instance that has an EBS volume attached of type gp2. You currently have 300GB of space of that gp2 device. The EC2 instance is of type m5.large. The database performance has recently been poor and upon looking CloudWatch, you realize the IOPS on the EBS volume are maxing out. The disk size of the database must not change because of a licensing issue. How do you solve that situation?</p>\n",
+			"explanation": "<p>IOPS cannot be directly increased on a gp2 volume without increasing its size, which not possible due to the question's constraints. Converting the EC2 instance won't improve the EBS drive's performance. The CloudWatch agent does not have any impact on performance. Hence converting the volume into an io1 volume will allow us to keep the same disk size while independently increasing the IOPS for that volume.</p>\n"
+		},
+		"correct_response": [
+			"b"
+		],
+		"section": "Design High-Performing Architectures",
+		"question_plain": "As a Solutions Architect, you have designed running a database on a single EC2 instance that has an EBS volume attached of type gp2. You currently have 300GB of space of that gp2 device. The EC2 instance is of type m5.large. The database performance has recently been poor and upon looking CloudWatch, you realize the IOPS on the EBS volume are maxing out. The disk size of the database must not change because of a licensing issue. How do you solve that situation?",
+		"related_lectures": []
+	}
+]
