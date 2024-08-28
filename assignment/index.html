@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>assessment</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
+    <style>
+        html {
+            font-size: 16px;
+            font-family: Montserrat, sans-serif
+        }
+
+        .action {
+            padding-top: 15px;
+            background-color: white;
+            bottom: 0;
+            position: sticky;
+            left: 0;
+            right: 0;
+        }
+
+        img {
+            width: 100%;
+        }
+
+        .answers .answer {
+            position: relative;
+            border: 1px solid #1c1d1f;
+            padding: 5px;
+            padding-left: 30px;
+            margin-bottom: 5px;
+            padding-right: 50px
+        }
+
+        .answers .answer.correct {
+            background: #f2f7f6
+        }
+
+        .answers .answer.wrong {
+            background: #ff5c67
+        }
+
+        .answers .answer.correct:after {
+            content: '(Correct)';
+            position: absolute;
+            right: 10px;
+            top: 21px
+        }
+
+        .answer-key {
+            position: absolute;
+            left: 10px;
+            top: 21px;
+            text-transform: uppercase
+        }
+
+        .question-index {
+            font-weight: 700
+        }
+
+        .answer-correct {
+            margin-top: 20px;
+            text-transform: capitalize
+        }
+
+        .question {
+            padding: 30px
+        }
+
+        .question+.question {
+            margin-top: 30px
+        }
+
+        .question:nth-child(even) {
+            background: #f7f9fa
+        }
+
+        p:last-child br {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-group">
+            <label for="fileInput">Choose JSON files:</label>
+            <input type="file" class="form-control" id="fileInput" multiple>
+        </div>
+        <div class="form-group">
+            <label for="jsonFileSelect">Select a Essessment file:</label>
+            <select class="form-control" id="jsonFileSelect">
+                <option value="" selected>--Select a file--</option>
+            </select>
+        </div>
+        <div class="row">
+            <div class="col">
+                <h1><span class="js-correctQuest">0</span>/<span class="js-correctTotal">0</span></h1>
+            </div>
+        </div>
+        <div class="exam">
+            
+        </div>
+        <div class="row action">
+           <div class="col">
+                <div class="form-group" >
+                    <button type="button" class="btn btn-primary js-submit">Submit</button>
+                    <button type="button" class="btn btn-danger js-reset">Reset</button>
+                </div>
+           </div>
+        </div>
+    </div>
+    
+    <div class="question radio d-none">
+        <span class="question-index">Question 1</span>
+        <div class="title">
+            <div style="margin: 16px 0;">
+                <p></p>
+            </div>
+        </div>
+        <div class="answers">
+            <div class="answer">
+                <label style="margin: 16px 0;">
+                    <input type="radio" name="question1" value="a">
+                    <span class="answer-key">a.</span>
+                </label>
+            </div>
+        </div>
+        <div class="explanation d-none">
+            <p><strong>Explanation:</strong></p>
+        </div>
+    </div>
+    <div class="question checkbox d-none">
+        <span class="question-index">Question 1</span>
+        <div class="title">
+            <div style="margin: 16px 0;">
+                <p></p>
+            </div>
+        </div>
+        <div class="answers">
+            <div class="answer">
+                <label style="margin: 16px 0;">
+                    <input type="checkbox" name="question1" value="a">
+                    <span class="answer-key">a.</span>
+                </label>
+            </div>
+        </div>
+        <div class="explanation d-none">
+            <p><strong>Explanation:</strong></p>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function() {
+
+            var jsonData;
+
+            $(".js-reset").on("click", function() {
+                $(".exam").empty(); 
+                $('#fileInput').trigger('change');
+            });
+
+            $(".js-submit").on("click", function() {
+                $(".js-correctTotal").text((jsonData).map((index, data) => data.correct_response).length);
+                $(".exam").find(".answer").each((index, elements) => $(elements).removeClass("correct"));
+                $(".exam").find(".answer").each((index, elements) => $(elements).removeClass("wrong"));
+
+                $(jsonData).each((index, data) => {
+                    $("input[name='" + data.id + "']").each(function(idx, input) {
+                        $.each($(jsonData).filter((index, dt) => dt.id == data.id)[0].correct_response, function(i, v) {
+                            if(v == input.value) {
+                                $(input).parents(".answer").addClass("correct");
+                            }
+                        });
+                    });
+
+                    $("input[name='" + data.id + "']:checked").parents(".answer").not(".correct").find("input").each(function(idx, input) {
+                        $.each($(jsonData).filter((index, dt) => dt.id == data.id)[0].correct_response, function(i, v) {
+                            $(input).parents(".answer").addClass("wrong");
+                        });
+                    });
+
+                    $("input[name='" + data.id + "']").parents(".question").find(".explanation").removeClass("d-none");
+                    $("input[name='" + data.id + "']").parents(".question").find(".explanation").append(data.prompt.explanation);
+                });
+
+                $(".js-correctQuest").text($(".answer.correct input:checked").length);
+            });
+            
+            function shuffleArray(array) {
+                for (let i = array.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [array[i], array[j]] = [array[j], array[i]]; // Swap elements
+                }
+                return array;
+            }
+
+            function answerType(answerType, index, data) {
+                var questionElement = answerType === "multiple-choice" ? $(".question.radio.d-none").clone() : $(".question.checkbox.d-none").clone();
+                questionElement.removeClass("d-none");
+                questionElement.find(".title p").text(data.question_plain)
+                questionElement.find(".question-index").text("Question " + (index + 1));
+                var answers = questionElement.find(".answers");
+                var answer = answers.find(".answer");
+                $(data.prompt.answers).each(function(index, elements) {
+                    var aws = answer.clone();
+                    aws.find("label").append(elements);
+                    aws.find("p").css("display", "contents");
+                    aws.find("input").attr("name", data.id);
+                    var indexMap = {
+                        0: "a",
+                        1: "b",
+                        2: "c",
+                        3: "d",
+                        4: "e",
+                        5: "f",
+                    }
+                    aws.find("input").val(indexMap[index]);
+                    aws.find(".answer-key").text(indexMap[index] + ". ");
+                    answers.append(aws);
+                });
+                $(".exam").append(questionElement);
+                answers.find(".answer:first-child").remove();
+            }
+
+            // Handle file selection
+            $('#fileInput').on('change', function(event) {
+                var files = event.target.files;
+                var selectBox = $('#jsonFileSelect');
+                selectBox.empty(); // Clear existing options
+                selectBox.append('<option value="">--Select a file--</option>'); // Add default option
+
+                for (var i = 0; i < files.length; i++) {
+                    var file = files[i];
+                    selectBox.append('<option value="' + i + '">' + file.name + '</option>');
+                }
+
+                // Handle file selection from dropdown
+                selectBox.on('change', function() {
+                    var selectedIndex = $(this).val();
+                    if (selectedIndex !== "") {
+                        var selectedFile = files[selectedIndex];
+                        var reader = new FileReader();
+                        
+                        reader.onload = function(e) {
+                            jsonData = JSON.parse(e.target.result);
+
+                            $(shuffleArray(jsonData)).each(function(index, data) {
+                                answerType(data.assessment_type, index, data);
+                            })
+                        };
+
+                        reader.readAsText(selectedFile); // Read the selected file as text
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
